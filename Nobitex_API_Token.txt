@@ -1,0 +1,5 @@
+7fecf5964c24766fd64c4be370c293568aa52354
+
+اگر Nobitex API پایه‌ی متفاوتی داری، محیط متغیر NOBITEX_API_BASE را تنظیم کن:
+export NOBITEX_API_BASE="https://api.nobitex.ir"
+

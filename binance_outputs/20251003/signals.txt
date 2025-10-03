@@ -1,0 +1,1 @@
+XVG/USDT | LONG | entry=0.01 stop=0.01 target=0.01 reason=macd+support+rsi

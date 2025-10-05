@@ -1,1 +1,2 @@
 XVG/USDT | LONG | entry=0.01 stop=0.01 target=0.01 reason=macd+support+rsi
+ZEC/USDT | LONG | entry=137.81 stop=108.85 target=189.93 reason=macd+support+rsi

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8">
+  <title>راهنمای nobitex_trading</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: Tahoma, Arial, sans-serif; direction: rtl; padding: 24px; color:#111; background:#f7f7f8; }
+    h1,h2,h3 { color:#0b5; }
+    pre { background:#222; color:#efe; padding:12px; overflow:auto; border-radius:6px; }
+    .box { background:white; padding:16px; border-radius:8px; margin-bottom:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+    table { border-collapse:collapse; width:100%; margin-top:8px; }
+    th, td { padding:8px; border-bottom:1px solid #eee; text-align:right; }
+  </style>
+</head>
+<body>
+  <h1>راهنمای پروژه nobitex_trading</h1>
+
+  <div class="box">
+    <h2>معرفی</h2>
+    <p>این مجموعه ابزار برای اسکن نمادهای USDT در نوبیتکس، تولید سیگنال‌های کوتاه‌مدت و گزارش‌گیری عددی و نموداری طراحی شده است.</p>
+  </div>
+
+  <div class="box">
+    <h2>گام‌های نصب</h2>
+    <pre>
+git clone &lt;repo&gt; nobitex_trading
+cd nobitex_trading
+python -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install requests pandas numpy plotly
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>نحوه اجرا</h2>
+    <h3>1. اسکن نمادها و تولید CSV اولیه</h3>
+    <pre>python src/nobitex_scan_dynamic.py</pre>
+
+    <h3>2. تولید گزارش و نمودار با کندل 1h</h3>
+    <pre>python src/nobitex_signals_nominal_fees_with_ohlc_rounded.py --capital 10000 --taker-fee 0.001 --slippage 0.002 --nobitex-token "$NOBITEX_TOKEN"</pre>
+    <p>خروجی‌ها در پوشه <code>output/</code> ذخیره می‌شوند.</p>
+  </div>
+
+  <div class="box">
+    <h2>توضیح خروجی‌ها</h2>
+    <table>
+      <tr><th>فایل</th><th>شرح</th></tr>
+      <tr><td>nobitex_dynamic_scan.csv</td><td>لیست نمادهای کشف‌شده و پارامترهای سیگنال اولیه</td></tr>
+      <tr><td>خلاصه_سیگنال‌ها_نوبیتکس_ساده_گرد.csv</td><td>خلاصه سیگنال‌ها با ستون‌های: نماد، قیمت آخر، سود خالص، پیپ، سود پیپ، قیمت اجرایی ورود</td></tr>
+      <tr><td>نوبیتکس_سیگنال‌ها_با_کندل_1h_گرد شده تا 2 رقم اعشار.html</td><td>نمودار تعاملی هر نماد با کندل 1h و نقاط ورود/استاپ/تارگت و آمار</td></tr>
+    </table>
+  </div>
+
+  <div class="box">
+    <h2>راهنمای خواندن نمودار</h2>
+    <ol>
+      <li>هر ردیف نمودار برای یک نماد است؛ کندل‌ها 1 ساعته هستند.</li>
+      <li>نقطه آبی: قیمت اجرایی ورود؛ نقطه قرمز: استاپ؛ نقطه سبز: تارگت.</li>
+      <li>برای تأیید سیگنال long صبر کن حداقل یک کندل 1h بالای نقطه ورود بسته شود.</li>
+      <li>قبل از ارسال سفارش، orderbook و عمق بازار را چک کن تا لیکوئیدیتی کافی باشد.</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h2>پیشنهادات برای کاهش ریسک</h2>
+    <ul>
+      <li>اندازه سفارش را بر اساس نقدشوندگی تقسیم کن.</li>
+      <li>کارمزد و لغزش را پیشاپیش در محاسبات لحاظ کن.</li>
+      <li>محدودیت همزمان ریسک باز را تنظیم کن (مثلاً حداکثر 3% از سرمایه).</li>
+      <li>لاگ کامل از ورود/خروج و دلایل را ذخیره کن برای تحلیل بعدی.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>ساختار پوشه‌ها</h2>
+    <pre>
+nobitex_trading/
+├─ src/
+├─ data/
+├─ output/
+└─ docs/
+    </pre>
+  </div>
+
+  <div class="box">
+    <h2>تماس و توسعه</h2>
+    <p>برای اضافه کردن استراتژی جدید یا بهینه‌سازی‌های بعدی، فایل‌های مربوطه را در src/ اضافه کرده و changelog را در docs/changelog.txt ثبت کن.</p>
+  </div>
+</body>
+</html>

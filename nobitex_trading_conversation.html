@@ -1,0 +1,96 @@
+<!doctype html> <html lang="fa"> <head> <meta charset="utf-8"/> <title>ساختار پروژه nobitex_trading و راهنمای استفاده</title> <meta name="viewport" content="width=device-width,initial-scale=1"/> <style> body { font-family: Tahoma, Arial, sans-serif; direction: rtl; background:#f6f8fa; color:#222; margin:0; padding:28px; } .container { max-width:1100px; margin:0 auto; } header { background:#0e7d3a; color:#fff; padding:18px 22px; border-radius:8px; margin-bottom:18px; box-shadow:0 3px 10px rgba(0,0,0,0.06); } header h1 { margin:0; font-size:20px; } header p { margin:6px 0 0 0; opacity:0.95; } .block { background:#fff; padding:14px; border-radius:10px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.04); } .meta { font-size:13px; color:#666; margin-bottom:8px; } .msg { padding:12px 14px; border-radius:10px; margin-bottom:10px; display:block; white-space:pre-wrap; line-height:1.45; } .user { background:linear-gradient(90deg,#e6f0ff,#d9ecff); border:1px solid #bcdcff; color:#0b3d91; } .assistant { background:linear-gradient(90deg,#eafbf0,#ddf7e6); border:1px solid #bfe9c6; color:#0a5a2a; } .section-title { font-size:16px; color:#0b6; margin-bottom:8px; } pre.code { background:#0b1220; color:#e6fff2; padding:12px; border-radius:6px; overflow:auto; font-size:13px; } table { width:100%; border-collapse:collapse; margin-top:8px; } th, td { padding:8px; border-bottom:1px solid #eee; text-align:right; } footer { text-align:center; color:#666; font-size:13px; margin-top:18px; } </style> </head> <body> <div class="container"> <header> <h1>ساختار پروژه nobitex_trading و راهنمای استفاده</h1> <p>خلاصه گفتگو: طراحی ساختار پروژه، README و guide.html، و نکات نهایی برای اجرا در سرور</p> </header>
+
+<div class="block"> <div class="meta">شروع بخش موردنظر: «Project structure» تا نکات پایانی</div>
+
+<div class="section-title">سؤال (کاربر)</div> <div class="msg user">حالا بیا کل این پروژه رو بازبینی کنیم و یک ساختار اصولی براش بسازیم و فایل‌ها رو داخل فولدرهای مناسب بزاریم. فایل README.me رو بساز و راهنمای استفاده از نرم‌افزار رو هم بصورت فایل html درست کن. اسم پروژه هم باشه: nobitex_trading</div>
+
+<div class="section-title">پاسخ (دستیار)</div> <div class="msg assistant"> Project structure
+
+nobitex_trading/
+
+README.md
+
+guide.html
+
+src/
+
+nobitex_scan_dynamic.py
+
+nobitex_ohlc_scan_apiv2.py
+
+nobitex_scan_signals.py
+
+nobitex_signals_size_and_plots.py
+
+nobitex_signals_size_and_plots_nominal.py
+
+nobitex_signals_size_and_plots_nominal_fees.py
+
+nobitex_signals_nominal_fees_with_ohlc.py
+
+nobitex_signals_nominal_fees_with_ohlc_rounded.py
+
+data/
+
+raw/
+
+cache/
+
+output/
+
+nobitex_dynamic_scan.csv
+
+nobitex_signals_summary.csv
+
+nobitex_signals_summary_nominal.csv
+
+nobitex_signals_summary_nominal_fees.csv
+
+nobitex_signals_all.html
+
+نوبیتکسسیگنال‌هابا_کندل_1h.html
+
+docs/
+
+usage_examples.txt
+
+changelog.txt
+
+نکات نهایی: مطمئن شو همه اسکریپت‌ها header برای خواندن متغیر NOBITEX_TOKEN یا پارامتر --nobitex-token را دارند. برای اجرا در سرور: از virtualenv و systemd استفاده کن و لاگ‌ها را بچسبان به فایل‌های rotating log. اگر بخواهی، من نسخه نهایی README.md و guide.html را با محتوای فارسی دقیق‌تر در یک فایل ZIP آماده می‌کنم یا تغییراتی مثل اضافه کردن نمونه‌های تصویری داخل HTML را اضافه کنم. </div> </div>
+
+<div class="block"> <div class="section-title">خلاصهٔ محتوای فایل README.md</div> <div class="msg assistant"> README outline (نمونه کوتاه):
+
+nobitex_trading
+معرفی، ویژگی‌ها، ساختار پروژه، پیش‌نیازها، نصب، نحوه اجرا، نمونه دستورات:
+
+نصب وابستگی‌ها (requests, pandas, numpy, plotly)
+
+اجرای اسکن پویا: python src/nobitex_scan_dynamic.py
+
+تولید گزارش نهایی (کندل 1h + محاسبات با کارمزد و لغزش): python src/nobitex_signals_nominal_fees_with_ohlc_rounded.py --capital 10000 --taker-fee 0.001 --slippage 0.002 --nobitex-token "$NOBITEX_TOKEN"
+
+مکان خروجی‌ها: پوشه output/ </div> </div>
+
+<div class="block"> <div class="section-title">خلاصهٔ محتوای guide.html</div> <div class="msg assistant"> راهنما شامل:
+
+نصب و راه‌اندازی virtualenv
+
+نمونه دستورات اجرا
+
+توضیح خروجی‌ها (CSV و HTML)
+
+راهنمای خواندن نمودار (کندل‌ها، نقاط ورود/استاپ/تارگت)
+
+پیشنهادات کاهش ریسک و نکات عملیاتی </div> </div>
+
+<div class="block"> <div class="section-title">دستورات پیشنهادی برای مرتب‌سازی محلی</div> <pre class="code">mkdir -p nobitex_trading/{src,data/raw,data/cache,output,docs} mv nobitex_*.py src/ || true mv nobitex_dynamic_scan.csv output/ || true mv *.html output/ || true mv *.csv output/ || true</pre> </div>
+
+<div class="block"> <div class="section-title">نکات پایانی که گفتگو با آن تمام می‌شود</div> <div class="msg assistant">
+
+مطمئن شو همه اسکریپت‌ها header برای خواندن متغیر NOBITEX_TOKEN یا پارامتر --nobitex-token را دارند.
+
+برای اجرا در سرور: از virtualenv و systemd استفاده کن و لاگ‌ها را بچسبان به فایل‌های rotating log.
+
+اگر بخواهی، من نسخه نهایی README.md و guide.html را با محتوای فارسی دقیق‌تر در یک فایل ZIP آماده می‌کنم یا تغییراتی مثل اضافه کردن نمونه‌های تصویری داخل HTML را اضافه کنم. </div> </div>
+
+<footer> فایل پیشنهادی برای ذخیره: <strong>nobitex_trading_project_conversation.html</strong><br/> می‌توانی این فایل را در هر مرورگر باز کنی و نگه‌داری کنی. </footer> </div> </body> </html>

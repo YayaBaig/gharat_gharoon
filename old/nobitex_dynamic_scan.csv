@@ -1,0 +1,7 @@
+symbol,last_price,vol,vol_usd,signal,signal_side
+BNBUSDT,1169.9999,0.007822149335752164,8239.745102491972,"{'side': 'long', 'entry': 1169.9999, 'stop': 1108.4132933106387, 'target': 1280.8557920408505, 'reason': 'macd+support+rsi'}",long
+DOGEUSDT,0.2565323,0.007304773425783376,24162.482626583074,"{'side': 'long', 'entry': 0.2565323, 'stop': 0.24248264148120457, 'target': 0.28182168533383173, 'reason': 'macd+support+rsi'}",long
+ADAUSDT,0.856,0.00684773640766709,5693.853958786689,"{'side': 'long', 'entry': 0.856, 'stop': 0.8153282862351869, 'target': 0.9292090847766634, 'reason': 'macd+support+rsi'}",long
+SOLUSDT,230.5,0.0067868615713271565,23471.97389748384,"{'side': 'long', 'entry': 230.5, 'stop': 221.09247681395803, 'target': 247.43354173487555, 'reason': 'macd+support+rsi'}",long
+XRPUSDT,3.01006,0.005726665789672428,17594.91640330681,"{'side': 'long', 'entry': 3.01006, 'stop': 2.838175716001922, 'target': 3.319451711196541, 'reason': 'macd+support+rsi'}",long
+ETHUSDT,4526.01,0.004514969357387947,40576.74697729901,"{'side': 'long', 'entry': 4526.01, 'stop': 4367.903830275229, 'target': 4810.601105504589, 'reason': 'macd+support+rsi'}",long

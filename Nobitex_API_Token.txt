@@ -3,3 +3,9 @@
 اگر Nobitex API پایه‌ی متفاوتی داری، محیط متغیر NOBITEX_API_BASE را تنظیم کن:
 export NOBITEX_API_BASE="https://api.nobitex.ir"
 
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install requests pandas numpy plotly
+export NOBITEX_TOKEN="7fecf5964c24766fd64c4be370c293568aa52354"
+

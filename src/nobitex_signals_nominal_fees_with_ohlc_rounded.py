@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # nobitex_signals_nominal_fees_with_ohlc_rounded.py
 # مثل نسخهٔ قبلی اما همهٔ مقادیر عددی خروجی با 2 رقم اعشار گرد می‌شوند
-import os, argparse, ast, time
+import os, sys, argparse, ast, time
+if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 import requests
 import pandas as pd, numpy as np
 import plotly.graph_objects as go

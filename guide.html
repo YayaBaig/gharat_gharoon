@@ -1,92 +1,162 @@
-<!doctype html>
-<html lang="fa">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <title>راهنمای nobitex_trading</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-    body { font-family: Tahoma, Arial, sans-serif; direction: rtl; padding: 24px; color:#111; background:#f7f7f8; }
-    h1,h2,h3 { color:#0b5; }
-    pre { background:#222; color:#efe; padding:12px; overflow:auto; border-radius:6px; }
-    .box { background:white; padding:16px; border-radius:8px; margin-bottom:16px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
-    table { border-collapse:collapse; width:100%; margin-top:8px; }
-    th, td { padding:8px; border-bottom:1px solid #eee; text-align:right; }
-  </style>
+    <meta charset="utf-8">
+    <title>راهنمای جامع Nobitex Trading Pro (نسخه ویندوز)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-base: #0B0E14;
+            --bg-card: rgba(22, 28, 40, 0.75);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #F0F4F8;
+            --text-muted: #94A3B8;
+            --primary: #00E676;
+            --accent: #00E5FF;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+            padding: 32px;
+            color: var(--text-main);
+            background-color: var(--bg-base);
+            line-height: 1.8;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        pre {
+            background: #131822;
+            color: #00E676;
+            padding: 16px;
+            overflow-x: auto;
+            border-radius: 10px;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Consolas', 'Courier New', monospace;
+            border: 1px solid var(--border-color);
+            margin: 12px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: right;
+        }
+
+        th {
+            color: var(--accent);
+            background: rgba(15, 21, 32, 0.6);
+        }
+
+        ul, ol {
+            margin-right: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .badge-win {
+            background: rgba(0, 229, 255, 0.15);
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+    </style>
 </head>
 <body>
-  <h1>راهنمای پروژه nobitex_trading</h1>
 
-  <div class="box">
-    <h2>معرفی</h2>
-    <p>این مجموعه ابزار برای اسکن نمادهای USDT در نوبیتکس، تولید سیگنال‌های کوتاه‌مدت و گزارش‌گیری عددی و نموداری طراحی شده است.</p>
-  </div>
+    <div class="header">
+        <h1><i class="fa-solid fa-chart-pie"></i> راهنمای سیستم Nobitex Trading Pro (ویندوز)</h1>
+        <p style="color: var(--text-muted);">اسکنر خودکار، تحلیل فیبوناچی و داشبورد تعاملی نوبیتکس برای ویندوز</p>
+    </div>
 
-  <div class="box">
-    <h2>گام‌های نصب</h2>
-    <pre>
-git clone &lt;repo&gt; nobitex_trading
-cd nobitex_trading
+    <div class="box">
+        <h2><i class="fa-solid fa-bolt"></i> نحوه راه‌اندازی سریع در ویندوز (1-Click Run)</h2>
+        <p>برای اجرای داشبورد روی ویندوز نیازی به نوشتن دستورات پیچیده ندارید:</p>
+        <ol>
+            <li>وارد پوشه پروژه شوید.</li>
+            <li>روی فایل <span class="badge-win">run_windows.bat</span> دو بار کلیک کنید.</li>
+            <li>برنامه به صورت خودکار محیط پایتون را آماده کرده و داشبورد وب را در مرورگر شما به آدرس <code>http://localhost:8000</code> باز می‌کند!</li>
+        </ol>
+    </div>
+
+    <div class="box">
+        <h2><i class="fa-solid fa-terminal"></i> اجرای دستورات از طریق ترمینال (PowerShell / Command Prompt)</h2>
+        <p>در صورتی که قصد دارید اسکریپت‌ها را دستی اجرا کنید:</p>
+        <pre>
+# ساخت و فعال‌سازی venv در ویندوز:
 python -m venv venv
-source venv/bin/activate
-pip install --upgrade pip
+venv\Scripts\activate
+
+# نصب پیش‌نیازها:
 pip install requests pandas numpy plotly
-    </pre>
-  </div>
 
-  <div class="box">
-    <h2>نحوه اجرا</h2>
-    <h3>1. اسکن نمادها و تولید CSV اولیه</h3>
-    <pre>python src/nobitex_scan_dynamic.py</pre>
+# اجرای اسکنر اصلی تحت وب:
+python app.py
+        </pre>
+    </div>
 
-    <h3>2. تولید گزارش و نمودار با کندل 1h</h3>
-    <pre>python src/nobitex_signals_nominal_fees_with_ohlc_rounded.py --capital 10000 --taker-fee 0.001 --slippage 0.002 --nobitex-token "$NOBITEX_TOKEN"</pre>
-    <p>خروجی‌ها در پوشه <code>output/</code> ذخیره می‌شوند.</p>
-  </div>
+    <div class="box">
+        <h2><i class="fa-solid fa-layer-group"></i> شرح فایل‌ها و خروجی‌های پروژه</h2>
+        <table>
+            <tr><th>فایل</th><th>توضیح و عملکرد</th></tr>
+            <tr><td>app.py</td><td>سرور اصلی داشبورد پایتون (سازگار با ویندوز) جهت اجرای اسکن و ارائه APIها</td></tr>
+            <tr><td>gui/index.html</td><td>رابط کاربری مدرن تحت وب (Glassmorphic SPA) با نمودارهای کندل‌استیک فیبوناچی</td></tr>
+            <tr><td>run_windows.bat</td><td>فایل راه‌اندازی ۱-کلیکی برای اجرا روی ویندوز بدون تداخل کدگذاری</td></tr>
+            <tr><td>src/nobitex_scan_dynamic.py</td><td>موتور کشف پویای نمادها و تحلیل اولیه نوسان</td></tr>
+            <tr><td>fib_support_signal.py</td><td>تحلیل سطح حمایت فیبوناچی، MA50 و کانال‌های قیمتی</td></tr>
+        </table>
+    </div>
 
-  <div class="box">
-    <h2>توضیح خروجی‌ها</h2>
-    <table>
-      <tr><th>فایل</th><th>شرح</th></tr>
-      <tr><td>nobitex_dynamic_scan.csv</td><td>لیست نمادهای کشف‌شده و پارامترهای سیگنال اولیه</td></tr>
-      <tr><td>خلاصه_سیگنال‌ها_نوبیتکس_ساده_گرد.csv</td><td>خلاصه سیگنال‌ها با ستون‌های: نماد، قیمت آخر، سود خالص، پیپ، سود پیپ، قیمت اجرایی ورود</td></tr>
-      <tr><td>نوبیتکس_سیگنال‌ها_با_کندل_1h_گرد شده تا 2 رقم اعشار.html</td><td>نمودار تعاملی هر نماد با کندل 1h و نقاط ورود/استاپ/تارگت و آمار</td></tr>
-    </table>
-  </div>
+    <div class="box">
+        <h2><i class="fa-solid fa-shield-halved"></i> نکات مدیریت ریسک و معامله‌گری</h2>
+        <ul>
+            <li>همواره پیش از ثبت سفارش حقیقی، میزان نقدینگی و عمق دفتر سفارشات (Orderbook) نوبیتکس را بررسی کنید.</li>
+            <li>سیگنال‌های خرید (Long) هنگامی معتبرتر هستند که حداقل یک کندل ۱ ساعته بالای نقطه ورود تثبیت شود.</li>
+            <li>لغزش قیمت (Slippage) و کارمزد معاملات به صورت خودکار در محاسبات سود خالص این سیستم لحاظ شده‌اند.</li>
+        </ul>
+    </div>
 
-  <div class="box">
-    <h2>راهنمای خواندن نمودار</h2>
-    <ol>
-      <li>هر ردیف نمودار برای یک نماد است؛ کندل‌ها 1 ساعته هستند.</li>
-      <li>نقطه آبی: قیمت اجرایی ورود؛ نقطه قرمز: استاپ؛ نقطه سبز: تارگت.</li>
-      <li>برای تأیید سیگنال long صبر کن حداقل یک کندل 1h بالای نقطه ورود بسته شود.</li>
-      <li>قبل از ارسال سفارش، orderbook و عمق بازار را چک کن تا لیکوئیدیتی کافی باشد.</li>
-    </ol>
-  </div>
-
-  <div class="box">
-    <h2>پیشنهادات برای کاهش ریسک</h2>
-    <ul>
-      <li>اندازه سفارش را بر اساس نقدشوندگی تقسیم کن.</li>
-      <li>کارمزد و لغزش را پیشاپیش در محاسبات لحاظ کن.</li>
-      <li>محدودیت همزمان ریسک باز را تنظیم کن (مثلاً حداکثر 3% از سرمایه).</li>
-      <li>لاگ کامل از ورود/خروج و دلایل را ذخیره کن برای تحلیل بعدی.</li>
-    </ul>
-  </div>
-
-  <div class="box">
-    <h2>ساختار پوشه‌ها</h2>
-    <pre>
-nobitex_trading/
-├─ src/
-├─ data/
-├─ output/
-└─ docs/
-    </pre>
-  </div>
-
-  <div class="box">
-    <h2>تماس و توسعه</h2>
-    <p>برای اضافه کردن استراتژی جدید یا بهینه‌سازی‌های بعدی، فایل‌های مربوطه را در src/ اضافه کرده و changelog را در docs/changelog.txt ثبت کن.</p>
-  </div>
 </body>
 </html>

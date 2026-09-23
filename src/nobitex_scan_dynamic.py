@@ -2,7 +2,9 @@
 # nobitex_scan_dynamic.py
 # Dynamic discovery of USDT symbols via orderbook + OHLC scan (Nobitex apiv2)
 
-import os, time, argparse, requests
+import os, sys, time, argparse, requests
+if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 from datetime import datetime, timedelta
 import pandas as pd, numpy as np
 
@@ -70,7 +72,7 @@ def add_indicators(df):
     std20 = df["Close"].rolling(20).std()
     df["BB_H"] = ma20 + 2 * std20
     df["BB_L"] = ma20 - 2 * std20
-    return df.fillna(method="ffill").fillna(method="bfill")
+    return df.ffill().bfill()
 
 def compute_volatility(df):
     if df is None or len(df) < 3:
@@ -203,7 +205,7 @@ def main():
 
 
 
-    actionable.to_csv("nobitex_dynamic_scan.csv", index=False)
+    actionable.to_csv("nobitex_dynamic_scan.csv", index=False, encoding='utf-8-sig')
     print("Wrote nobitex_dynamic_scan.csv")
 
 if __name__ == '__main__':

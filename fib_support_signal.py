@@ -3,7 +3,9 @@
 # تحلیل فیبوناچی + حمایت/مقاومت + order-block + MA50 و تولید سیگنال به همراه HTML تعاملی
 # اجرا: python fib_support_signal.py --symbol BTCUSDT --capital 1000 --nobitex-token "..." 
 
-import os, time, argparse, ast
+import os, sys, time, argparse, ast
+if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 from datetime import datetime, timedelta
 import requests
 import numpy as np

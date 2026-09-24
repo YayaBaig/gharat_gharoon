@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # app.py - Nobitex Trading Dashboard Backend for Windows & Cross-Platform
-import os, sys, json, time, math, argparse
+import os, sys, json, time, math, argparse, csv
 if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
 
@@ -24,6 +24,94 @@ COMMON_CANDIDATES = [
     "TRXUSDT", "LTCUSDT", "BNBUSDT", "SOLUSDT", "MATICUSDT", 
     "DOTUSDT", "ZECUSDT", "LINKUSDT", "AVAXUSDT", "AAVEUSDT"
 ]
+
+AVAILABLE_SYMBOLS_CACHE = None
+
+def get_available_symbols():
+    global AVAILABLE_SYMBOLS_CACHE
+    if AVAILABLE_SYMBOLS_CACHE:
+        return AVAILABLE_SYMBOLS_CACHE
+
+    symbols_map = {}
+    
+    # 1. Load from output/nobitex_symbols_list.csv if present
+    csv_path = os.path.join(BASE_DIR, "output", "nobitex_symbols_list.csv")
+    if os.path.exists(csv_path):
+        try:
+            with open(csv_path, "r", encoding="utf-8-sig") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    sym = (row.get("symbol") or "").strip().upper()
+                    if sym:
+                        base = (row.get("base") or "").strip().upper()
+                        quote = (row.get("quote") or "").strip().upper()
+                        if not quote:
+                            if sym.endswith("USDT"):
+                                quote = "USDT"
+                                base = sym[:-4]
+                            elif sym.endswith("IRT"):
+                                quote = "IRT"
+                                base = sym[:-3]
+                            else:
+                                quote = "USDT"
+                                base = sym
+                        symbols_map[sym] = {
+                            "symbol": sym,
+                            "base": base or sym,
+                            "quote": quote,
+                            "is_major": sym in COMMON_CANDIDATES
+                        }
+        except Exception as e:
+            pass
+
+    # 2. Ensure COMMON_CANDIDATES exist
+    for sym in COMMON_CANDIDATES:
+        if sym not in symbols_map:
+            base = sym[:-4] if sym.endswith("USDT") else (sym[:-3] if sym.endswith("IRT") else sym)
+            quote = "USDT" if sym.endswith("USDT") else ("IRT" if sym.endswith("IRT") else "USDT")
+            symbols_map[sym] = {
+                "symbol": sym,
+                "base": base,
+                "quote": quote,
+                "is_major": True
+            }
+        else:
+            symbols_map[sym]["is_major"] = True
+
+    # 3. Enrich with Nobitex API market stats if reachable
+    try:
+        r = requests.get(API_BASE + "/market/stats", timeout=3)
+        if r.status_code == 200:
+            stats = r.json().get("stats", {})
+            for pair in stats.keys():
+                pair_lower = pair.lower()
+                if pair_lower.endswith("-usdt"):
+                    base = pair_lower.split("-")[0].upper()
+                    sym = f"{base}USDT"
+                    if sym not in symbols_map:
+                        symbols_map[sym] = {
+                            "symbol": sym,
+                            "base": base,
+                            "quote": "USDT",
+                            "is_major": sym in COMMON_CANDIDATES
+                        }
+                elif pair_lower.endswith("-rls"):
+                    base = pair_lower.split("-")[0].upper()
+                    sym = f"{base}IRT"
+                    if sym not in symbols_map:
+                        symbols_map[sym] = {
+                            "symbol": sym,
+                            "base": base,
+                            "quote": "IRT",
+                            "is_major": sym in COMMON_CANDIDATES
+                        }
+    except Exception:
+        pass
+
+    result = list(symbols_map.values())
+    result.sort(key=lambda x: (not x["is_major"], x["quote"] != "USDT", x["symbol"]))
+    AVAILABLE_SYMBOLS_CACHE = result
+    return result
 
 def fetch_nobitex_orderbook(symbol, token=None):
     headers = {"Authorization": f"Bearer {token}"} if token else {}
@@ -240,6 +328,15 @@ class DashboardHTTPRequestHandler(BaseHTTPRequestHandler):
             })
             return
 
+        elif path == "/api/symbols" or path == "/api/available-symbols":
+            symbols = get_available_symbols()
+            self.send_json_response({
+                "count": len(symbols),
+                "symbols": symbols,
+                "default_selected": COMMON_CANDIDATES
+            })
+            return
+
         elif path == "/api/ohlc":
             params = parse_qs(parsed.query)
             symbol = params.get("symbol", ["BTCUSDT"])[0]
@@ -285,12 +382,17 @@ class DashboardHTTPRequestHandler(BaseHTTPRequestHandler):
         except Exception:
             payload = {}
 
-        if path == "/api/scan":
+        if path == "/api/scan" or path == "/api/save":
             capital = float(payload.get("capital", 1000.0))
             fee = float(payload.get("taker_fee", 0.001))
             slippage = float(payload.get("slippage", 0.002))
             token = payload.get("token", None)
-            symbols = payload.get("symbols", COMMON_CANDIDATES)
+            symbols = payload.get("symbols", [])
+            output_dir = payload.get("output_dir", "").strip()
+
+            if not symbols or not isinstance(symbols, list) or len(symbols) == 0:
+                self.send_json_response({"error": "لطفاً حداقل یک ارز را برای استعلام قیمت و تحلیل انتخاب کنید."}, status=400)
+                return
             
             results = []
             for sym in symbols:
@@ -308,6 +410,43 @@ class DashboardHTTPRequestHandler(BaseHTTPRequestHandler):
             valid_rr = [r["signal"]["rr_ratio"] for r in results if r["signal"]["side"] != "none" and r["signal"]["rr_ratio"] > 0]
             avg_rr = round(sum(valid_rr) / len(valid_rr), 2) if valid_rr else 0.0
 
+            saved_files = []
+            saved_dir_path = ""
+            if output_dir:
+                try:
+                    os.makedirs(output_dir, exist_ok=True)
+                    saved_dir_path = os.path.abspath(output_dir)
+                    
+                    # Prepare dataframe for export
+                    rows = []
+                    for r in results:
+                        rows.append({
+                            "نماد": r["symbol"],
+                            "قیمت_لحظه‌ای (USD)": r["last_price"],
+                            "جهت_سیگنال": r["signal"]["side"].upper(),
+                            "قیمت_ورود": r["signal"]["entry"],
+                            "حد_ضرر": r["signal"]["stop"],
+                            "حد_سود": r["signal"]["target"],
+                            "سود_خالص (USD)": r["signal"]["net_profit_usd"],
+                            "درصد_سود": r["signal"]["profit_pct"],
+                            "نسبت_R_R": r["signal"]["rr_ratio"],
+                            "علت_سیگنال": r["signal"]["reason"]
+                        })
+                    df_out = pd.DataFrame(rows)
+                    
+                    csv_path = os.path.join(output_dir, "خلاصه_سیگنال‌ها_نوبیتکس.csv")
+                    df_out.to_csv(csv_path, index=False, encoding='utf-8-sig')
+                    saved_files.append("خلاصه_سیگنال‌ها_نوبیتکس.csv")
+
+                    # Also save JSON report
+                    json_path = os.path.join(output_dir, "nobitex_signals_data.json")
+                    with open(json_path, "w", encoding="utf-8") as f:
+                        json.dump({"summary": {"total": total_scanned, "longs": long_count, "shorts": short_count}, "results": results}, f, ensure_ascii=False, indent=2)
+                    saved_files.append("nobitex_signals_data.json")
+
+                except Exception as e:
+                    print(f"Error saving to custom directory {output_dir}: {e}")
+
             self.send_json_response({
                 "summary": {
                     "total_scanned": total_scanned,
@@ -317,7 +456,9 @@ class DashboardHTTPRequestHandler(BaseHTTPRequestHandler):
                     "total_net_profit_usd": round(total_net_profit, 2),
                     "avg_rr_ratio": avg_rr
                 },
-                "results": results
+                "results": results,
+                "saved_dir": saved_dir_path,
+                "saved_files": saved_files
             })
             return
 

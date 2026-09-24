@@ -1,0 +1,443 @@
+{
+  "summary": {
+    "total": 14,
+    "longs": 7,
+    "shorts": 0
+  },
+  "results": [
+    {
+      "symbol": "BTCUSDT",
+      "last_price": 83550.0,
+      "volatility": 0.004272,
+      "volume_usd": 72634.41,
+      "rsi": 39.63,
+      "macd": -462.8107,
+      "ma50": 84800.5904,
+      "fibs": {
+        "0": 82900.0,
+        "0.236": 86126.7158,
+        "0.382": 85510.0921,
+        "0.5": 85011.725,
+        "0.618": 84513.3579,
+        "0.786": 83803.8183,
+        "1": 87123.45
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 83550.0,
+        "stop": 83550.0,
+        "target": 83550.0,
+        "exec_entry": 83299.5171,
+        "units": 0.012,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "last_price": 2653.0,
+      "volatility": 0.005394,
+      "volume_usd": 31419.09,
+      "rsi": 43.14,
+      "macd": -15.0605,
+      "ma50": 2701.3445,
+      "fibs": {
+        "0": 2630.01,
+        "0.236": 2746.5964,
+        "0.382": 2724.3168,
+        "0.5": 2706.31,
+        "0.618": 2688.3032,
+        "0.786": 2662.6664,
+        "1": 2782.61
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 2653.0,
+        "stop": 2653.0,
+        "target": 2653.0,
+        "exec_entry": 2645.0463,
+        "units": 0.3781,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "XRPUSDT",
+      "last_price": 1.4742,
+      "volatility": 0.009935,
+      "volume_usd": 24757.52,
+      "rsi": 40.57,
+      "macd": -0.0188,
+      "ma50": 1.5203,
+      "fibs": {
+        "0": 1.453,
+        "0.236": 1.6082,
+        "0.382": 1.5786,
+        "0.5": 1.5546,
+        "0.618": 1.5306,
+        "0.786": 1.4965,
+        "1": 1.6562
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 1.4742,
+        "stop": 1.4742,
+        "target": 1.4742,
+        "exec_entry": 1.4697,
+        "units": 680.3922,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "ADAUSDT",
+      "last_price": 0.2362,
+      "volatility": 0.010762,
+      "volume_usd": 8280.4,
+      "rsi": 45.0,
+      "macd": -0.0026,
+      "ma50": 0.2433,
+      "fibs": {
+        "0": 0.2332,
+        "0.236": 0.2551,
+        "0.382": 0.2509,
+        "0.5": 0.2475,
+        "0.618": 0.2442,
+        "0.786": 0.2393,
+        "1": 0.2619
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 0.2362,
+        "stop": 0.2327,
+        "target": 0.2619,
+        "exec_entry": 0.2369,
+        "units": 4221.0287,
+        "net_profit_usd": 102.17,
+        "net_risk_usd": 20.89,
+        "profit_pct": 10.22,
+        "rr_ratio": 4.89
+      }
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "last_price": 0.0929,
+      "volatility": 0.0133,
+      "volume_usd": 16122.53,
+      "rsi": 51.09,
+      "macd": -0.0011,
+      "ma50": 0.0956,
+      "fibs": {
+        "0": 0.0911,
+        "0.236": 0.1012,
+        "0.382": 0.0993,
+        "0.5": 0.0977,
+        "0.618": 0.0962,
+        "0.786": 0.094,
+        "1": 0.1043
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 0.0929,
+        "stop": 0.0915,
+        "target": 0.1043,
+        "exec_entry": 0.0931,
+        "units": 10736.1592,
+        "net_profit_usd": 116.42,
+        "net_risk_usd": 20.89,
+        "profit_pct": 11.64,
+        "rr_ratio": 5.57
+      }
+    },
+    {
+      "symbol": "TRXUSDT",
+      "last_price": 0.3403,
+      "volatility": 0.003192,
+      "volume_usd": 2050.21,
+      "rsi": 43.94,
+      "macd": -0.0005,
+      "ma50": 0.3432,
+      "fibs": {
+        "0": 0.3382,
+        "0.236": 0.3481,
+        "0.382": 0.3462,
+        "0.5": 0.3447,
+        "0.618": 0.3432,
+        "0.786": 0.341,
+        "1": 0.3512
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 0.3403,
+        "stop": 0.3403,
+        "target": 0.3403,
+        "exec_entry": 0.3393,
+        "units": 2947.2468,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "LTCUSDT",
+      "last_price": 66.44,
+      "volatility": 0.011812,
+      "volume_usd": 18519.64,
+      "rsi": 75.33,
+      "macd": 1.4868,
+      "ma50": 63.5711,
+      "fibs": {
+        "0": 59.01,
+        "0.236": 67.1466,
+        "0.382": 65.5917,
+        "0.5": 64.335,
+        "0.618": 63.0783,
+        "0.786": 61.2891,
+        "1": 69.66
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 66.44,
+        "stop": 66.44,
+        "target": 66.44,
+        "exec_entry": 66.2408,
+        "units": 15.0964,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "BNBUSDT",
+      "last_price": 770.3707,
+      "volatility": 0.00519,
+      "volume_usd": 2164.18,
+      "rsi": 56.87,
+      "macd": -2.6029,
+      "ma50": 776.9785,
+      "fibs": {
+        "0": 757.0001,
+        "0.236": 787.9301,
+        "0.382": 782.0194,
+        "0.5": 777.2423,
+        "0.618": 772.4651,
+        "0.786": 765.6637,
+        "1": 797.4844
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 770.3707,
+        "stop": 758.8151,
+        "target": 797.4844,
+        "exec_entry": 772.6834,
+        "units": 1.2942,
+        "net_profit_usd": 29.0,
+        "net_risk_usd": 20.89,
+        "profit_pct": 2.9,
+        "rr_ratio": 1.39
+      }
+    },
+    {
+      "symbol": "SOLUSDT",
+      "last_price": 113.697,
+      "volatility": 0.006351,
+      "volume_usd": 14996.94,
+      "rsi": 45.91,
+      "macd": -0.7088,
+      "ma50": 115.7933,
+      "fibs": {
+        "0": 112.5,
+        "0.236": 118.0344,
+        "0.382": 116.9768,
+        "0.5": 116.122,
+        "0.618": 115.2672,
+        "0.786": 114.0502,
+        "1": 119.744
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 113.697,
+        "stop": 113.697,
+        "target": 113.697,
+        "exec_entry": 113.3561,
+        "units": 8.8218,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "DOTUSDT",
+      "last_price": 1.12,
+      "volatility": 0.009177,
+      "volume_usd": 1133.86,
+      "rsi": 60.78,
+      "macd": -0.0086,
+      "ma50": 1.1434,
+      "fibs": {
+        "0": 1.088,
+        "0.236": 1.2026,
+        "0.382": 1.1807,
+        "0.5": 1.163,
+        "0.618": 1.1453,
+        "0.786": 1.1201,
+        "1": 1.238
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 1.12,
+        "stop": 1.1032,
+        "target": 1.238,
+        "exec_entry": 1.1234,
+        "units": 890.1848,
+        "net_profit_usd": 98.74,
+        "net_risk_usd": 20.89,
+        "profit_pct": 9.87,
+        "rr_ratio": 4.73
+      }
+    },
+    {
+      "symbol": "ZECUSDT",
+      "last_price": 1500.38,
+      "volatility": 0.011997,
+      "volume_usd": 33371.57,
+      "rsi": 43.86,
+      "macd": -15.7555,
+      "ma50": 1536.7852,
+      "fibs": {
+        "0": 1479.0,
+        "0.236": 1603.532,
+        "0.382": 1579.734,
+        "0.5": 1560.5,
+        "0.618": 1541.266,
+        "0.786": 1513.882,
+        "1": 1642.0
+      },
+      "signal": {
+        "side": "none",
+        "reason": "nomatch",
+        "entry": 1500.38,
+        "stop": 1500.38,
+        "target": 1500.38,
+        "exec_entry": 1495.8819,
+        "units": 0.6685,
+        "net_profit_usd": -6.02,
+        "net_risk_usd": 6.02,
+        "profit_pct": -0.6,
+        "rr_ratio": -1.0
+      }
+    },
+    {
+      "symbol": "LINKUSDT",
+      "last_price": 12.254,
+      "volatility": 0.008201,
+      "volume_usd": 2841.19,
+      "rsi": 50.17,
+      "macd": -0.1109,
+      "ma50": 12.5813,
+      "fibs": {
+        "0": 12.1,
+        "0.236": 12.9549,
+        "0.382": 12.7915,
+        "0.5": 12.6595,
+        "0.618": 12.5275,
+        "0.786": 12.3395,
+        "1": 13.219
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 12.254,
+        "stop": 12.0702,
+        "target": 13.219,
+        "exec_entry": 12.2908,
+        "units": 81.3618,
+        "net_profit_usd": 72.3,
+        "net_risk_usd": 20.89,
+        "profit_pct": 7.23,
+        "rr_ratio": 3.46
+      }
+    },
+    {
+      "symbol": "AVAXUSDT",
+      "last_price": 10.213,
+      "volatility": 0.009921,
+      "volume_usd": 1569.18,
+      "rsi": 40.34,
+      "macd": -0.1621,
+      "ma50": 10.6024,
+      "fibs": {
+        "0": 10.012,
+        "0.236": 11.0839,
+        "0.382": 10.8791,
+        "0.5": 10.7135,
+        "0.618": 10.5479,
+        "0.786": 10.3122,
+        "1": 11.415
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 10.213,
+        "stop": 10.0598,
+        "target": 11.415,
+        "exec_entry": 10.2437,
+        "units": 97.6214,
+        "net_profit_usd": 111.01,
+        "net_risk_usd": 20.89,
+        "profit_pct": 11.1,
+        "rr_ratio": 5.31
+      }
+    },
+    {
+      "symbol": "AAVEUSDT",
+      "last_price": 137.55,
+      "volatility": 0.010323,
+      "volume_usd": 1189.6,
+      "rsi": 45.3,
+      "macd": -1.7186,
+      "ma50": 141.8385,
+      "fibs": {
+        "0": 135.0,
+        "0.236": 150.2494,
+        "0.382": 147.3353,
+        "0.5": 144.98,
+        "0.618": 142.6247,
+        "0.786": 139.2714,
+        "1": 154.96
+      },
+      "signal": {
+        "side": "long",
+        "reason": "پولبک به حمایتی فیبوناچی 0.5/0.618 + MACD صعودی + RSI",
+        "entry": 137.55,
+        "stop": 135.4868,
+        "target": 154.96,
+        "exec_entry": 137.9629,
+        "units": 7.2483,
+        "net_profit_usd": 119.83,
+        "net_risk_usd": 20.89,
+        "profit_pct": 11.98,
+        "rr_ratio": 5.74
+      }
+    }
+  ]
+}

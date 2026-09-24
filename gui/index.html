@@ -485,6 +485,345 @@
             .container { padding: 12px; }
             .controls-grid { grid-template-columns: 1fr; }
         }
+
+        /* Coin Selector Styles */
+        .coin-selector-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .coin-selector-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .coin-selector-header .title-group h2 {
+            font-size: 17px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        .coin-selector-header .title-group p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .badge-selected-count {
+            padding: 6px 16px;
+            border-radius: 30px;
+            background: rgba(0, 230, 118, 0.15);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .coin-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-quick-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-quick {
+            background: rgba(15, 21, 32, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 7px 13px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-quick:hover {
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(0, 229, 255, 0.1);
+        }
+
+        .btn-quick.primary {
+            background: rgba(0, 230, 118, 0.12);
+            color: var(--primary);
+            border-color: rgba(0, 230, 118, 0.35);
+        }
+
+        .btn-quick.primary:hover {
+            background: rgba(0, 230, 118, 0.25);
+            color: #fff;
+        }
+
+        .btn-quick.danger {
+            color: #FF5252;
+            border-color: rgba(255, 82, 82, 0.25);
+        }
+
+        .btn-quick.danger:hover {
+            background: rgba(255, 23, 68, 0.18);
+            color: #fff;
+        }
+
+        .coin-filter-tabs {
+            display: flex;
+            gap: 4px;
+            background: rgba(15, 21, 32, 0.9);
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .coin-tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .coin-tab-btn.active {
+            background: var(--bg-card);
+            color: var(--text-main);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.12);
+            font-weight: 600;
+        }
+
+        .coin-search-box {
+            position: relative;
+            min-width: 240px;
+            flex: 1;
+            max-width: 320px;
+        }
+
+        .coin-search-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .coin-search-box input {
+            width: 100%;
+            padding-right: 36px;
+            font-size: 13px;
+        }
+
+        /* Coins Grid */
+        .coins-scroll-area {
+            max-height: 240px;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(11, 14, 20, 0.6);
+            border: 1px solid var(--border-color);
+        }
+
+        .coins-scroll-area::-webkit-scrollbar {
+            width: 6px;
+        }
+        .coins-scroll-area::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 3px;
+        }
+        .coins-scroll-area::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.15);
+            border-radius: 3px;
+        }
+        .coins-scroll-area::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .coin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .coin-card {
+            background: rgba(22, 28, 40, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 9px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .coin-card:hover {
+            background: rgba(30, 38, 54, 0.95);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .coin-card.selected {
+            background: rgba(0, 230, 118, 0.12);
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 230, 118, 0.25);
+        }
+
+        .coin-card-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coin-card-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            border: 1.5px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: transparent;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .coin-card.selected .coin-card-check {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #000;
+        }
+
+        .coin-card-symbol {
+            font-weight: 700;
+            font-size: 13px;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .coin-card-quote {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .coin-card-quote.usdt {
+            background: rgba(0, 229, 255, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+        }
+
+        .coin-card-quote.irt {
+            background: rgba(255, 196, 0, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(255, 196, 0, 0.3);
+        }
+
+        /* Selected Chips Tray */
+        .selected-tray-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 4px;
+        }
+
+        .selected-tray-header {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .selected-tray {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        .selected-chip {
+            background: rgba(0, 230, 118, 0.12);
+            border: 1px solid rgba(0, 230, 118, 0.4);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            transition: all 0.15s;
+        }
+
+        .selected-chip:hover {
+            border-color: var(--danger);
+        }
+
+        .selected-chip .btn-remove-chip {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            transition: color 0.15s;
+        }
+
+        .selected-chip .btn-remove-chip:hover {
+            color: var(--danger);
+        }
+
+        .coin-alert-warning {
+            padding: 12px 18px;
+            background: rgba(255, 196, 0, 0.12);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            border-radius: 12px;
+            font-size: 13px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -515,6 +854,79 @@
     <!-- Main Container -->
     <div class="container">
 
+        <!-- Coin Selection Glass Panel -->
+        <div class="glass-panel coin-selector-card" id="coin-selector-section">
+            <div class="coin-selector-header">
+                <div class="title-group">
+                    <h2><i class="fa-solid fa-coins" style="color: var(--warning);"></i> انتخاب نمادهای معاملاتی جهت استعلام قیمت و تحلیل</h2>
+                    <p>نمادهای مورد نظر خود را با کلیک از لیست زیر انتخاب کنید. فراخوانی API نوبیتکس فقط برای نمادهای انتخابی شما انجام می‌شود.</p>
+                </div>
+                <div class="badge-selected-count" id="selected-count-badge">
+                    <i class="fa-solid fa-circle-check"></i> ۰ نماد انتخاب شده
+                </div>
+            </div>
+
+            <!-- Toolbar: Quick Actions + Filter Tabs + Search -->
+            <div class="coin-toolbar">
+                <div class="btn-quick-group">
+                    <button type="button" class="btn-quick primary" onclick="selectTopCoins()">
+                        <i class="fa-solid fa-star"></i> ارزهای اصلی (Top 15)
+                    </button>
+                    <button type="button" class="btn-quick" onclick="selectAllCoins()">
+                        <i class="fa-solid fa-check-double"></i> انتخاب همه
+                    </button>
+                    <button type="button" class="btn-quick" onclick="selectUsdtOnly()">
+                        <i class="fa-solid fa-dollar-sign"></i> فقط USDT
+                    </button>
+                    <button type="button" class="btn-quick" onclick="selectIrtOnly()">
+                        <i class="fa-solid fa-money-bill-1-wave"></i> فقط تومان (IRT)
+                    </button>
+                    <button type="button" class="btn-quick danger" onclick="clearAllCoins()">
+                        <i class="fa-solid fa-trash-can"></i> پاک کردن همه
+                    </button>
+                </div>
+
+                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <div class="coin-filter-tabs">
+                        <button type="button" class="coin-tab-btn active" onclick="setCoinQuoteFilter('all', this)">همه</button>
+                        <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('usdt', this)">USDT</button>
+                        <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('irt', this)">IRT</button>
+                        <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('major', this)">ارزهای برتر</button>
+                    </div>
+
+                    <div class="coin-search-box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" id="coin-search-input" class="input-style" placeholder="فیلتر سریع (مثلاً BTC، SOL)..." oninput="filterCoinList()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selection Warning Alert Box -->
+            <div id="selection-warning-alert" class="coin-alert-warning">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 18px;"></i>
+                <span id="selection-warning-text">لطفاً حداقل یک ارز را از لیست بالا انتخاب کنید تا قیمت و تحلیل آن استعلام شود.</span>
+            </div>
+
+            <!-- Scrollable Coins Grid -->
+            <div class="coins-scroll-area">
+                <div class="coin-grid" id="coin-grid-container">
+                    <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px;">
+                        <div class="spinner"></div>&nbsp; در حال بارگذاری نمادهای نوبیتکس...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Chips Tray -->
+            <div class="selected-tray-wrapper">
+                <div class="selected-tray-header">
+                    <span>پیش‌نمایش نمادهای انتخاب شده برای استعلام قیمت:</span>
+                </div>
+                <div class="selected-tray" id="selected-chips-tray">
+                    <div style="color: var(--text-dim); font-size: 13px;">هنوز ارزی انتخاب نشده است.</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Controls Form Panel -->
         <div class="glass-panel controls-grid">
             <div class="form-group">
@@ -532,15 +944,30 @@
                 <input type="number" id="input-slippage" class="input-style" value="0.2" step="0.05">
             </div>
 
-            <div class="form-group">
-                <label><i class="fa-solid fa-key"></i> توکن نوبیتکس (اختیاری):</label>
-                <input type="password" id="input-token" class="input-style" placeholder="Nobitex Bearer Token">
+            <div class="form-group" style="grid-column: span 2;">
+                <label><i class="fa-solid fa-folder-open"></i> مسیر ذخیره‌سازی خروجی‌ها (Directory Path):</label>
+                <input type="text" id="input-output-dir" class="input-style" value="output" placeholder="مثلاً: C:\Reports یا output">
             </div>
 
-            <button id="btn-run-scan" class="btn-scan" onclick="triggerScan()">
-                <i class="fa-solid fa-rocket" id="scan-icon"></i>
-                <span id="scan-btn-text">اجرای اسکن زنده نوبیتکس</span>
-            </button>
+            <div style="display: flex; gap: 10px; grid-column: span 2;">
+                <button id="btn-run-scan" class="btn-scan" style="flex: 1;" onclick="triggerScan()">
+                    <i class="fa-solid fa-rocket" id="scan-icon"></i>
+                    <span id="scan-btn-text">اجرای استعلام و اسکن زنده</span>
+                </button>
+                <button id="btn-save-dir" class="btn-scan" style="background: linear-gradient(135deg, #00E5FF 0%, #3D5AFE 100%); flex: 1;" onclick="saveToDirectory()">
+                    <i class="fa-solid fa-floppy-disk" id="save-icon"></i>
+                    <span id="save-btn-text">💾 ذخیره نمادهای انتخابی در پوشه</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notification Banner -->
+        <div id="save-notification" class="glass-panel" style="display: none; padding: 16px 20px; background: rgba(0, 230, 118, 0.12); border: 1px solid var(--primary); color: var(--primary); font-size: 14px; border-radius: 12px; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <i class="fa-solid fa-circle-check" style="font-size: 20px;"></i>
+                <span id="save-notification-text">نتایج با موفقیت ذخیره شدند.</span>
+            </div>
+            <button onclick="document.getElementById('save-notification').style.display='none'" style="background: transparent; border: none; color: var(--primary); cursor: pointer; font-size: 18px;">&times;</button>
         </div>
 
         <!-- KPI Metrics Grid -->
@@ -612,7 +1039,7 @@
                     <tbody id="signals-table-body">
                         <tr>
                             <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 40px;">
-                                هنوز اسکنی انجام نشده است. جهت دریافت آخرین اطلاعات بازار دکمه «اجرای اسکن زنده» را فشار دهید.
+                                هنوز قیمتی استعلام نشده است. نمادهای مورد نظر را از لیست بالا انتخاب کرده و دکمه «اجرای استعلام و اسکن زنده» را کلیک کنید تا داده‌ها فقط برای نمادهای انتخابی شما دریافت شوند.
                             </td>
                         </tr>
                     </tbody>
@@ -636,44 +1063,319 @@
     <script>
         let allScanResults = [];
         let currentFilter = 'all';
+        let allAvailableCoins = [];
+        let selectedCoins = new Set();
+        let coinQuoteFilter = 'all';
 
-        // Auto Scan on load
+        // Load available coins from backend on startup (NO SCAN CALL ON LOAD!)
         window.addEventListener('DOMContentLoaded', () => {
-            triggerScan();
+            loadAvailableCoins();
         });
 
+        async function loadAvailableCoins() {
+            const grid = document.getElementById('coin-grid-container');
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px;"><div class="spinner"></div>&nbsp; در حال بارگذاری لیست ارزهای نوبیتکس...</div>';
+
+            try {
+                const res = await fetch('/api/symbols');
+                const data = await res.json();
+                if (data && data.symbols) {
+                    allAvailableCoins = data.symbols;
+                    
+                    // Pre-select default major candidates in UI (NO API calls are made here)
+                    const defaults = data.default_selected || ["BTCUSDT", "ETHUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT", "TRXUSDT", "SOLUSDT", "BNBUSDT"];
+                    defaults.forEach(sym => selectedCoins.add(sym));
+                    
+                    renderCoinsList();
+                    updateSelectedSummary();
+                }
+            } catch (err) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; color: var(--danger); text-align: center; padding: 20px;">خطا در دریافت لیست نمادها: ${err.message}</div>`;
+            }
+        }
+
+        function getFilteredCoins() {
+            const searchVal = (document.getElementById('coin-search-input') ? document.getElementById('coin-search-input').value.trim().toLowerCase() : '');
+            return allAvailableCoins.filter(c => {
+                if (coinQuoteFilter === 'usdt' && c.quote !== 'USDT') return false;
+                if (coinQuoteFilter === 'irt' && c.quote !== 'IRT') return false;
+                if (coinQuoteFilter === 'major' && !c.is_major) return false;
+                if (searchVal) {
+                    const sym = c.symbol.toLowerCase();
+                    const base = (c.base || '').toLowerCase();
+                    if (!sym.includes(searchVal) && !base.includes(searchVal)) return false;
+                }
+                return true;
+            });
+        }
+
+        function renderCoinsList() {
+            const grid = document.getElementById('coin-grid-container');
+            const filtered = getFilteredCoins();
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 24px;">هیچ نمادی با جستجوی فعلی یافت نشد.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(c => {
+                const isSelected = selectedCoins.has(c.symbol);
+                const quoteClass = c.quote === 'USDT' ? 'usdt' : 'irt';
+                return `
+                    <div class="coin-card ${isSelected ? 'selected' : ''}" id="coin-card-${c.symbol}" onclick="toggleCoin('${c.symbol}')">
+                        <div class="coin-card-info">
+                            <div class="coin-card-check">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="coin-card-symbol">${c.base || c.symbol}</span>
+                        </div>
+                        <span class="coin-card-quote ${quoteClass}">${c.quote}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateCardElement(symbol) {
+            const card = document.getElementById(`coin-card-${symbol}`);
+            if (card) {
+                if (selectedCoins.has(symbol)) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            }
+        }
+
+        function toggleCoin(symbol) {
+            if (selectedCoins.has(symbol)) {
+                selectedCoins.delete(symbol);
+            } else {
+                selectedCoins.add(symbol);
+            }
+            updateCardElement(symbol);
+            updateSelectedSummary();
+            hideSelectionWarning();
+        }
+
+        function selectTopCoins() {
+            selectedCoins.clear();
+            allAvailableCoins.filter(c => c.is_major).forEach(c => selectedCoins.add(c.symbol));
+            renderCoinsList();
+            updateSelectedSummary();
+            hideSelectionWarning();
+        }
+
+        function selectAllCoins() {
+            getFilteredCoins().forEach(c => selectedCoins.add(c.symbol));
+            renderCoinsList();
+            updateSelectedSummary();
+            hideSelectionWarning();
+        }
+
+        function selectUsdtOnly() {
+            selectedCoins.clear();
+            allAvailableCoins.filter(c => c.quote === 'USDT').forEach(c => selectedCoins.add(c.symbol));
+            renderCoinsList();
+            updateSelectedSummary();
+            hideSelectionWarning();
+        }
+
+        function selectIrtOnly() {
+            selectedCoins.clear();
+            allAvailableCoins.filter(c => c.quote === 'IRT').forEach(c => selectedCoins.add(c.symbol));
+            renderCoinsList();
+            updateSelectedSummary();
+            hideSelectionWarning();
+        }
+
+        function clearAllCoins() {
+            selectedCoins.clear();
+            renderCoinsList();
+            updateSelectedSummary();
+        }
+
+        function setCoinQuoteFilter(filter, btn) {
+            coinQuoteFilter = filter;
+            document.querySelectorAll('.coin-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCoinsList();
+        }
+
+        function filterCoinList() {
+            renderCoinsList();
+        }
+
+        function updateSelectedSummary() {
+            const badge = document.getElementById('selected-count-badge');
+            const tray = document.getElementById('selected-chips-tray');
+            const count = selectedCoins.size;
+            
+            if (badge) {
+                badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${count} نماد انتخاب شده`;
+                if (count === 0) {
+                    badge.style.background = 'rgba(255, 82, 82, 0.15)';
+                    badge.style.borderColor = 'var(--danger)';
+                    badge.style.color = 'var(--danger)';
+                } else {
+                    badge.style.background = 'rgba(0, 230, 118, 0.15)';
+                    badge.style.borderColor = 'var(--primary)';
+                    badge.style.color = 'var(--primary)';
+                }
+            }
+
+            if (tray) {
+                if (count === 0) {
+                    tray.innerHTML = '<div style="color: var(--text-dim); font-size: 13px;"><i class="fa-solid fa-triangle-exclamation" style="color: var(--warning);"></i> هنوز هیچ ارزی انتخاب نشده است. با کلیک بر روی نمادهای بالا، ارزهای دلخواه را انتخاب کنید.</div>';
+                } else {
+                    tray.innerHTML = Array.from(selectedCoins).map(sym => `
+                        <div class="selected-chip">
+                            <span>${sym}</span>
+                            <button type="button" class="btn-remove-chip" onclick="toggleCoin('${sym}')" title="حذف">&times;</button>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        function showSelectionWarning() {
+            const alertBox = document.getElementById('selection-warning-alert');
+            if (alertBox) {
+                alertBox.style.display = 'flex';
+                alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                alert('لطفاً حداقل یک ارز را از لیست نمادها انتخاب کنید.');
+            }
+        }
+
+        function hideSelectionWarning() {
+            const alertBox = document.getElementById('selection-warning-alert');
+            if (alertBox) {
+                alertBox.style.display = 'none';
+            }
+        }
+
         async function triggerScan() {
+            if (selectedCoins.size === 0) {
+                showSelectionWarning();
+                return;
+            }
+            hideSelectionWarning();
+
+            const symbolsToScan = Array.from(selectedCoins);
             const btn = document.getElementById('btn-run-scan');
             const icon = document.getElementById('scan-icon');
             const text = document.getElementById('scan-btn-text');
 
             icon.className = 'spinner';
-            text.innerText = 'در حال اسکن بازار نوبیتکس...';
+            text.innerText = `در حال دریافت قیمت و تحلیل (${symbolsToScan.length} نماد)...`;
             btn.disabled = true;
 
             const capital = parseFloat(document.getElementById('input-capital').value) || 1000;
             const fee = (parseFloat(document.getElementById('input-fee').value) || 0.1) / 100;
             const slippage = (parseFloat(document.getElementById('input-slippage').value) || 0.2) / 100;
-            const token = document.getElementById('input-token').value.trim();
+            const token = document.getElementById('input-token') ? document.getElementById('input-token').value.trim() : '';
+            const outputDir = document.getElementById('input-output-dir').value.trim();
 
             try {
                 const response = await fetch('/api/scan', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ capital, taker_fee: fee, slippage, token })
+                    body: JSON.stringify({ 
+                        symbols: symbolsToScan, 
+                        capital, 
+                        taker_fee: fee, 
+                        slippage, 
+                        token, 
+                        output_dir: outputDir 
+                    })
                 });
 
                 const data = await response.json();
+                if (!response.ok) {
+                    alert(data.error || 'خطا در اجرای اسکن');
+                    return;
+                }
+
                 if (data && data.results) {
                     allScanResults = data.results;
                     updateKPIs(data.summary);
                     renderTable();
+                    if (data.saved_dir) {
+                        const notif = document.getElementById('save-notification');
+                        const notifText = document.getElementById('save-notification-text');
+                        notifText.innerText = `✅ نتایج با موفقیت در پوشه ذخیره شد: ${data.saved_dir}`;
+                        notif.style.display = 'flex';
+                    }
                 }
             } catch (err) {
                 alert('خطا در برقراری ارتباط با سرور: ' + err.message);
             } finally {
                 icon.className = 'fa-solid fa-rocket';
-                text.innerText = 'اجرای اسکن زنده نوبیتکس';
+                text.innerText = 'اجرای استعلام و اسکن زنده';
+                btn.disabled = false;
+            }
+        }
+
+        async function saveToDirectory() {
+            if (selectedCoins.size === 0) {
+                showSelectionWarning();
+                return;
+            }
+            hideSelectionWarning();
+
+            const outputDir = document.getElementById('input-output-dir').value.trim();
+            if (!outputDir) {
+                alert('لطفاً مسیر پوشه ذخیره‌سازی را وارد کنید.');
+                return;
+            }
+
+            const symbolsToScan = Array.from(selectedCoins);
+            const btn = document.getElementById('btn-save-dir');
+            const icon = document.getElementById('save-icon');
+            const text = document.getElementById('save-btn-text');
+
+            icon.className = 'spinner';
+            text.innerText = 'در حال ذخیره‌سازی...';
+            btn.disabled = true;
+
+            const capital = parseFloat(document.getElementById('input-capital').value) || 1000;
+            const fee = (parseFloat(document.getElementById('input-fee').value) || 0.1) / 100;
+            const slippage = (parseFloat(document.getElementById('input-slippage').value) || 0.2) / 100;
+            const token = document.getElementById('input-token') ? document.getElementById('input-token').value.trim() : '';
+
+            try {
+                const response = await fetch('/api/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        symbols: symbolsToScan, 
+                        capital, 
+                        taker_fee: fee, 
+                        slippage, 
+                        token, 
+                        output_dir: outputDir 
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    alert(data.error || 'خطا در ذخیره‌سازی');
+                    return;
+                }
+
+                if (data && data.saved_dir) {
+                    const notif = document.getElementById('save-notification');
+                    const notifText = document.getElementById('save-notification-text');
+                    notifText.innerText = `✅ نتایج با موفقیت در پوشه ذخیره شد: ${data.saved_dir} (${data.saved_files.join(', ')})`;
+                    notif.style.display = 'flex';
+                } else {
+                    alert('ذخیره‌سازی با خطا مواجه شد.');
+                }
+            } catch (err) {
+                alert('خطا در ذخیره‌سازی: ' + err.message);
+            } finally {
+                icon.className = 'fa-solid fa-floppy-disk';
+                text.innerText = '💾 ذخیره نمادهای انتخابی در پوشه';
                 btn.disabled = false;
             }
         }

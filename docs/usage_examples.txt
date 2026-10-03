@@ -1,0 +1,45 @@
+نمونه‌های اجرا — nobitex_trading
+================================
+
+# (اختیاری) توکن API
+export NOBITEX_TOKEN="your_token_here"
+
+# ---------------------------------------------------------------
+# داشبورد وب
+# ---------------------------------------------------------------
+python app.py                  # پورت پیش‌فرض 8000
+python app.py --port 9000
+
+# فراخوانی مستقیم API داشبورد (وقتی سرور در حال اجراست):
+curl http://localhost:8000/api/status
+curl http://localhost:8000/api/symbols
+curl "http://localhost:8000/api/ohlc?symbol=BTCUSDT&resolution=60"
+
+curl -X POST http://localhost:8000/api/scan \
+  -H "Content-Type: application/json" \
+  -d '{"symbols":["BTCUSDT","ETHUSDT"],"capital":1000,"taker_fee":0.001,"slippage":0.002}'
+
+# با output_dir، فایل‌های CSV و JSON هم در آن پوشه ذخیره می‌شوند:
+curl -X POST http://localhost:8000/api/save \
+  -H "Content-Type: application/json" \
+  -d '{"symbols":["BTCUSDT"],"capital":1000,"output_dir":"output"}'
+
+# ---------------------------------------------------------------
+# تحلیل فیبوناچی چندتایم‌فریمی (1D / 4H / 1H / 15m)
+# ---------------------------------------------------------------
+python fib_support_signal.py --symbol BTCUSDT --capital 1000
+python fib_support_signal.py --symbol DOGEUSDT --nobitex-token "$NOBITEX_TOKEN"
+python fib_support_signal.py --symbol BTCUSDT --use-local-csv 1D=d.csv 4H=h4.csv 1H=h1.csv 15m=m15.csv
+# خروجی: <SYMBOL>_fib_signal.html در ریشه پروژه
+
+# ---------------------------------------------------------------
+# کشف نمادها
+# ---------------------------------------------------------------
+python nobitex_list_symbols.py --out output/nobitex_symbols_list.csv
+python nobitex_list_symbols.py --delay 0.3
+# ستون‌ها: symbol, base, quote, last_price, bid, ask, spread, volume_24h, fetched_at_utc
+# داشبورد فهرست نمادها را از output/nobitex_symbols_list.csv می‌خواند.
+
+python nobitex_symbols_usdt_fa.py --out output/nobitex_symbols_usdt.csv
+python nobitex_symbols_usdt_fa.py --candidates FOOUSDT,BARUSDT
+# خروجی با سربرگ فارسی (UTF-8 BOM برای Excel)

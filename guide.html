@@ -130,10 +130,16 @@ python -m venv venv
 venv\Scripts\activate
 
 # نصب پیش‌نیازها:
-pip install requests pandas numpy plotly
+pip install requests pandas numpy plotly scipy
 
 # اجرای اسکنر اصلی تحت وب:
 python app.py
+
+# تحلیل فیبوناچی یک نماد:
+python fib_support_signal.py --symbol BTCUSDT --capital 1000
+
+# به‌روزرسانی فهرست نمادهای داشبورد:
+python nobitex_list_symbols.py --out output/nobitex_symbols_list.csv
         </pre>
     </div>
 
@@ -144,8 +150,10 @@ python app.py
             <tr><td>app.py</td><td>سرور اصلی داشبورد پایتون (سازگار با ویندوز) جهت اجرای اسکن و ارائه APIها</td></tr>
             <tr><td>gui/index.html</td><td>رابط کاربری مدرن تحت وب (Glassmorphic SPA) با نمودارهای کندل‌استیک فیبوناچی</td></tr>
             <tr><td>run_windows.bat</td><td>فایل راه‌اندازی ۱-کلیکی برای اجرا روی ویندوز بدون تداخل کدگذاری</td></tr>
-            <tr><td>src/nobitex_scan_dynamic.py</td><td>موتور کشف پویای نمادها و تحلیل اولیه نوسان</td></tr>
-            <tr><td>fib_support_signal.py</td><td>تحلیل سطح حمایت فیبوناچی، MA50 و کانال‌های قیمتی</td></tr>
+            <tr><td>fib_support_signal.py</td><td>تحلیل فیبوناچی چندتایم‌فریمی (1D/4H/1H/15m)، روند MA50 و order-block برای یک نماد؛ خروجی <code>&lt;SYMBOL&gt;_fib_signal.html</code></td></tr>
+            <tr><td>nobitex_list_symbols.py</td><td>کشف نمادها و قیمت bid/ask/spread؛ خروجی <code>output/nobitex_symbols_list.csv</code> که فهرست نمادهای داشبورد از آن خوانده می‌شود</td></tr>
+            <tr><td>nobitex_symbols_usdt_fa.py</td><td>بررسی نمادهای USDT از طریق orderbook و خروجی CSV با سربرگ فارسی</td></tr>
+            <tr><td>خلاصه_سیگنال‌ها_نوبیتکس.csv / nobitex_signals_data.json</td><td>خروجی اسکن داشبورد، در صورت تعیین پوشه خروجی</td></tr>
         </table>
     </div>
 

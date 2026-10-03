@@ -389,6 +389,7 @@ class DashboardHTTPRequestHandler(BaseHTTPRequestHandler):
             token = payload.get("token", None)
             symbols = payload.get("symbols", [])
             output_dir = payload.get("output_dir", "").strip()
+            wallet = payload.get("wallet", [])
 
             if not symbols or not isinstance(symbols, list) or len(symbols) == 0:
                 self.send_json_response({"error": "لطفاً حداقل یک ارز را برای استعلام قیمت و تحلیل انتخاب کنید."}, status=400)
@@ -436,12 +437,33 @@ class DashboardHTTPRequestHandler(BaseHTTPRequestHandler):
                     
                     csv_path = os.path.join(output_dir, "خلاصه_سیگنال‌ها_نوبیتکس.csv")
                     df_out.to_csv(csv_path, index=False, encoding='utf-8-sig')
+
+                    # Append user wallet state to the end of CSV if provided
+                    if wallet and isinstance(wallet, list) and len(wallet) > 0:
+                        with open(csv_path, "a", encoding="utf-8-sig") as f:
+                            f.write("\n\n")
+                            f.write("# =====================================================\n")
+                            f.write("# --- وضعیت کیف پول و دارایی‌های من (User Wallet State) ---\n")
+                            f.write("# =====================================================\n")
+                            f.write("نماد دارایی,مقدار,قیمت خرید (USD),ارزش تخمینی (USD),یادداشت\n")
+                            for item in wallet:
+                                sym = str(item.get("symbol", "")).replace('"', '""')
+                                amt = str(item.get("amount", "")).replace('"', '""')
+                                buy = str(item.get("buy_price", "")).replace('"', '""')
+                                val = str(item.get("value", "")).replace('"', '""')
+                                note = str(item.get("notes", "")).replace('"', '""')
+                                f.write(f'"{sym}","{amt}","{buy}","{val}","{note}"\n')
                     saved_files.append("خلاصه_سیگنال‌ها_نوبیتکس.csv")
 
-                    # Also save JSON report
+                    # Also save JSON report including wallet state
                     json_path = os.path.join(output_dir, "nobitex_signals_data.json")
                     with open(json_path, "w", encoding="utf-8") as f:
-                        json.dump({"summary": {"total": total_scanned, "longs": long_count, "shorts": short_count}, "results": results}, f, ensure_ascii=False, indent=2)
+                        json_export = {
+                            "summary": {"total": total_scanned, "longs": long_count, "shorts": short_count},
+                            "results": results,
+                            "user_wallet": wallet
+                        }
+                        json.dump(json_export, f, ensure_ascii=False, indent=2)
                     saved_files.append("nobitex_signals_data.json")
 
                 except Exception as e:

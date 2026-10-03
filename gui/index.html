@@ -824,6 +824,173 @@
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* App Navigation Switcher Tabs */
+        .app-tabs-bar {
+            display: flex;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 14px;
+            background: rgba(15, 21, 32, 0.85);
+            border: 1px solid var(--border-color);
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .app-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .app-tab-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .app-tab-btn.active {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 229, 255, 0.15) 100%);
+            border-color: rgba(0, 230, 118, 0.4);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0, 230, 118, 0.15);
+        }
+
+        .badge-tab-pill {
+            background: rgba(0, 230, 118, 0.2);
+            color: var(--primary);
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        /* Wallet Manager Styles */
+        .wallet-manager-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .wallet-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .wallet-header .title-group h2 {
+            font-size: 17px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        .wallet-header .title-group p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .wallet-entry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) 180px;
+            gap: 14px;
+            align-items: end;
+            background: rgba(11, 14, 20, 0.5);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* AI Parser Styles */
+        .ai-parser-card {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .ai-header .title-group h2 {
+            font-size: 17px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        .ai-header .title-group p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .ai-input-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+            .ai-input-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .file-upload-zone {
+            border: 2px dashed rgba(0, 229, 255, 0.3);
+            border-radius: 12px;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(0, 229, 255, 0.03);
+            transition: all 0.25s ease;
+        }
+
+        .file-upload-zone:hover {
+            border-color: var(--accent);
+            background: rgba(0, 229, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .ai-textarea {
+            width: 100%;
+            height: 140px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            direction: ltr;
+            font-size: 12.5px;
+            line-height: 1.5;
+            resize: vertical;
+        }
     </style>
 </head>
 <body>
@@ -854,196 +1021,432 @@
     <!-- Main Container -->
     <div class="container">
 
-        <!-- Coin Selection Glass Panel -->
-        <div class="glass-panel coin-selector-card" id="coin-selector-section">
-            <div class="coin-selector-header">
-                <div class="title-group">
-                    <h2><i class="fa-solid fa-coins" style="color: var(--warning);"></i> انتخاب نمادهای معاملاتی جهت استعلام قیمت و تحلیل</h2>
-                    <p>نمادهای مورد نظر خود را با کلیک از لیست زیر انتخاب کنید. فراخوانی API نوبیتکس فقط برای نمادهای انتخابی شما انجام می‌شود.</p>
+        <!-- Main Navigation Switcher Tabs -->
+        <div class="glass-panel app-tabs-bar">
+            <button class="app-tab-btn active" id="tab-btn-scanner" onclick="switchAppTab('scanner', this)">
+                <i class="fa-solid fa-chart-line"></i> اسکنر زنده نوبیتکس
+            </button>
+            <button class="app-tab-btn" id="tab-btn-wallet" onclick="switchAppTab('wallet', this)">
+                <i class="fa-solid fa-wallet"></i> وضعیت کیف پول من (ثبت دستی و ضمیمه به خروجی)
+                <span class="badge-tab-pill" id="badge-wallet-count">۰</span>
+            </button>
+            <button class="app-tab-btn" id="tab-btn-ai" onclick="switchAppTab('ai', this)">
+                <i class="fa-solid fa-brain"></i> پارسر تحلیل هوش مصنوعی (AI JSON)
+                <span class="badge-tab-pill" id="badge-ai-count" style="display: none;">۰</span>
+            </button>
+        </div>
+
+        <!-- Section 1: Scanner Section -->
+        <div id="section-scanner" class="app-tab-section" style="display: flex; flex-direction: column; gap: 24px;">
+
+            <!-- Coin Selection Glass Panel -->
+            <div class="glass-panel coin-selector-card" id="coin-selector-section">
+                <div class="coin-selector-header">
+                    <div class="title-group">
+                        <h2><i class="fa-solid fa-coins" style="color: var(--warning);"></i> انتخاب نمادهای معاملاتی جهت استعلام قیمت و تحلیل</h2>
+                        <p>نمادهای مورد نظر خود را با کلیک از لیست زیر انتخاب کنید. فراخوانی API نوبیتکس فقط برای نمادهای انتخابی شما انجام می‌شود.</p>
+                    </div>
+                    <div class="badge-selected-count" id="selected-count-badge">
+                        <i class="fa-solid fa-circle-check"></i> ۰ نماد انتخاب شده
+                    </div>
                 </div>
-                <div class="badge-selected-count" id="selected-count-badge">
-                    <i class="fa-solid fa-circle-check"></i> ۰ نماد انتخاب شده
+
+                <!-- Toolbar: Quick Actions + Filter Tabs + Search -->
+                <div class="coin-toolbar">
+                    <div class="btn-quick-group">
+                        <button type="button" class="btn-quick primary" onclick="selectTopCoins()">
+                            <i class="fa-solid fa-star"></i> ارزهای اصلی (Top 15)
+                        </button>
+                        <button type="button" class="btn-quick" onclick="selectAllCoins()">
+                            <i class="fa-solid fa-check-double"></i> انتخاب همه
+                        </button>
+                        <button type="button" class="btn-quick" onclick="selectUsdtOnly()">
+                            <i class="fa-solid fa-dollar-sign"></i> فقط USDT
+                        </button>
+                        <button type="button" class="btn-quick" onclick="selectIrtOnly()">
+                            <i class="fa-solid fa-money-bill-1-wave"></i> فقط تومان (IRT)
+                        </button>
+                        <button type="button" class="btn-quick danger" onclick="clearAllCoins()">
+                            <i class="fa-solid fa-trash-can"></i> پاک کردن همه
+                        </button>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                        <div class="coin-filter-tabs">
+                            <button type="button" class="coin-tab-btn active" onclick="setCoinQuoteFilter('all', this)">همه</button>
+                            <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('usdt', this)">USDT</button>
+                            <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('irt', this)">IRT</button>
+                            <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('major', this)">ارزهای برتر</button>
+                        </div>
+
+                        <div class="coin-search-box">
+                            <i class="fa-solid fa-search"></i>
+                            <input type="text" id="coin-search-input" class="input-style" placeholder="فیلتر سریع (مثلاً BTC، SOL)..." oninput="filterCoinList()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selection Warning Alert Box -->
+                <div id="selection-warning-alert" class="coin-alert-warning">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 18px;"></i>
+                    <span id="selection-warning-text">لطفاً حداقل یک ارز را از لیست بالا انتخاب کنید تا قیمت و تحلیل آن استعلام شود.</span>
+                </div>
+
+                <!-- Scrollable Coins Grid -->
+                <div class="coins-scroll-area">
+                    <div class="coin-grid" id="coin-grid-container">
+                        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px;">
+                            <div class="spinner"></div>&nbsp; در حال بارگذاری نمادهای نوبیتکس...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected Chips Tray -->
+                <div class="selected-tray-wrapper">
+                    <div class="selected-tray-header">
+                        <span>پیش‌نمایش نمادهای انتخاب شده برای استعلام قیمت:</span>
+                    </div>
+                    <div class="selected-tray" id="selected-chips-tray">
+                        <div style="color: var(--text-dim); font-size: 13px;">هنوز ارزی انتخاب نشده است.</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Toolbar: Quick Actions + Filter Tabs + Search -->
-            <div class="coin-toolbar">
-                <div class="btn-quick-group">
-                    <button type="button" class="btn-quick primary" onclick="selectTopCoins()">
-                        <i class="fa-solid fa-star"></i> ارزهای اصلی (Top 15)
-                    </button>
-                    <button type="button" class="btn-quick" onclick="selectAllCoins()">
-                        <i class="fa-solid fa-check-double"></i> انتخاب همه
-                    </button>
-                    <button type="button" class="btn-quick" onclick="selectUsdtOnly()">
-                        <i class="fa-solid fa-dollar-sign"></i> فقط USDT
-                    </button>
-                    <button type="button" class="btn-quick" onclick="selectIrtOnly()">
-                        <i class="fa-solid fa-money-bill-1-wave"></i> فقط تومان (IRT)
-                    </button>
-                    <button type="button" class="btn-quick danger" onclick="clearAllCoins()">
-                        <i class="fa-solid fa-trash-can"></i> پاک کردن همه
-                    </button>
+            <!-- Controls Form Panel -->
+            <div class="glass-panel controls-grid">
+                <div class="form-group">
+                    <label><i class="fa-solid fa-dollar-sign"></i> کل سرمایه تخصیص یافته ($):</label>
+                    <input type="number" id="input-capital" class="input-style" value="1000" step="100">
                 </div>
 
-                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                    <div class="coin-filter-tabs">
-                        <button type="button" class="coin-tab-btn active" onclick="setCoinQuoteFilter('all', this)">همه</button>
-                        <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('usdt', this)">USDT</button>
-                        <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('irt', this)">IRT</button>
-                        <button type="button" class="coin-tab-btn" onclick="setCoinQuoteFilter('major', this)">ارزهای برتر</button>
+                <div class="form-group">
+                    <label><i class="fa-solid fa-percent"></i> کارمزد تیکر (%):</label>
+                    <input type="number" id="input-fee" class="input-style" value="0.1" step="0.05">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-sliders"></i> لغزش فرضی Slippage (%):</label>
+                    <input type="number" id="input-slippage" class="input-style" value="0.2" step="0.05">
+                </div>
+
+                <div class="form-group" style="grid-column: span 2;">
+                    <label><i class="fa-solid fa-folder-open"></i> مسیر ذخیره‌سازی خروجی‌ها (Directory Path):</label>
+                    <input type="text" id="input-output-dir" class="input-style" value="output" placeholder="مثلاً: C:\Reports یا output">
+                    <div id="scanner-wallet-hint" style="font-size: 12.5px; color: var(--text-muted); margin-top: 6px; display: flex; align-items: center; justify-content: space-between;">
+                        <span><i class="fa-solid fa-wallet" style="color: var(--warning);"></i> وضعیت کیف پول: <strong id="scanner-wallet-summary-text" style="color: var(--accent);">۰ ارز ثبت‌شده</strong> به انتهای خروجی‌های CSV و JSON ضمیمه خواهد شد.</span>
+                        <a href="javascript:void(0)" onclick="switchAppTab('wallet', document.getElementById('tab-btn-wallet'))" style="color: var(--warning); text-decoration: underline; font-weight: 500;">
+                            <i class="fa-solid fa-pen-to-square"></i> ورود / ویرایش دستی دارایی‌ها
+                        </a>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; grid-column: span 2;">
+                    <button id="btn-run-scan" class="btn-scan" style="flex: 1;" onclick="triggerScan()">
+                        <i class="fa-solid fa-rocket" id="scan-icon"></i>
+                        <span id="scan-btn-text">اجرای استعلام و اسکن زنده</span>
+                    </button>
+                    <button id="btn-save-dir" class="btn-scan" style="background: linear-gradient(135deg, #00E5FF 0%, #3D5AFE 100%); flex: 1;" onclick="saveToDirectory()">
+                        <i class="fa-solid fa-floppy-disk" id="save-icon"></i>
+                        <span id="save-btn-text">💾 ذخیره نمادهای انتخابی در پوشه</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notification Banner -->
+            <div id="save-notification" class="glass-panel" style="display: none; padding: 16px 20px; background: rgba(0, 230, 118, 0.12); border: 1px solid var(--primary); color: var(--primary); font-size: 14px; border-radius: 12px; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-circle-check" style="font-size: 20px;"></i>
+                    <span id="save-notification-text">نتایج با موفقیت ذخیره شدند.</span>
+                </div>
+                <button onclick="document.getElementById('save-notification').style.display='none'" style="background: transparent; border: none; color: var(--primary); cursor: pointer; font-size: 18px;">&times;</button>
+            </div>
+
+            <!-- KPI Metrics Grid -->
+            <div class="kpi-grid">
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-info">
+                        <h3>تعداد نمادهای اسکن شده</h3>
+                        <div class="kpi-value" id="kpi-scanned">0</div>
+                    </div>
+                    <div class="kpi-icon blue"><i class="fa-solid fa-magnifying-glass"></i></div>
+                </div>
+
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-info">
+                        <h3>سیگنال‌های خرید (LONG)</h3>
+                        <div class="kpi-value" style="color: var(--primary);" id="kpi-longs">0</div>
+                    </div>
+                    <div class="kpi-icon green"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                </div>
+
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-info">
+                        <h3>سیگنال‌های فروش (SHORT)</h3>
+                        <div class="kpi-value" style="color: var(--danger);" id="kpi-shorts">0</div>
+                    </div>
+                    <div class="kpi-icon red"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                </div>
+
+                <div class="glass-panel kpi-card">
+                    <div class="kpi-info">
+                        <h3>مجموع سود خالص تخمینی ($)</h3>
+                        <div class="kpi-value" style="color: var(--accent);" id="kpi-profit">0.00 $</div>
+                    </div>
+                    <div class="kpi-icon gold"><i class="fa-solid fa-sack-dollar"></i></div>
+                </div>
+            </div>
+
+            <!-- Signals Table Section -->
+            <div class="glass-panel content-layout">
+                <div class="table-header">
+                    <div class="filter-tabs">
+                        <button class="tab-btn active" onclick="filterTable('all', this)">همه نمادها</button>
+                        <button class="tab-btn" onclick="filterTable('actionable', this)">دارای سیگنال</button>
+                        <button class="tab-btn" onclick="filterTable('long', this)">خرید LONG</button>
+                        <button class="tab-btn" onclick="filterTable('short', this)">فروش SHORT</button>
                     </div>
 
-                    <div class="coin-search-box">
+                    <div class="search-box">
                         <i class="fa-solid fa-search"></i>
-                        <input type="text" id="coin-search-input" class="input-style" placeholder="فیلتر سریع (مثلاً BTC، SOL)..." oninput="filterCoinList()">
+                        <input type="text" id="search-input" class="input-style" placeholder="جستجوی نماد (مثلاً BTC)..." onkeyup="searchSymbols()">
                     </div>
                 </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>نماد ارز</th>
+                                <th>قیمت لحظه‌ای (USD)</th>
+                                <th>وضعیت سیگنال</th>
+                                <th>قیمت ورود</th>
+                                <th>حد ضرر (Stop)</th>
+                                <th>تارگت (Target)</th>
+                                <th>سود خالص تخمینی</th>
+                                <th>نسبت سود/ریسک (R:R)</th>
+                                <th>جزئیات تحلیل فیبوناچی</th>
+                            </tr>
+                        </thead>
+                        <tbody id="signals-table-body">
+                            <tr>
+                                <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 40px;">
+                                    هنوز قیمتی استعلام نشده است. نمادهای مورد نظر را از لیست بالا انتخاب کرده و دکمه «اجرای استعلام و اسکن زنده» را کلیک کنید تا داده‌ها فقط برای نمادهای انتخابی شما دریافت شوند.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Selection Warning Alert Box -->
-            <div id="selection-warning-alert" class="coin-alert-warning">
-                <i class="fa-solid fa-triangle-exclamation" style="font-size: 18px;"></i>
-                <span id="selection-warning-text">لطفاً حداقل یک ارز را از لیست بالا انتخاب کنید تا قیمت و تحلیل آن استعلام شود.</span>
-            </div>
+        </div>
 
-            <!-- Scrollable Coins Grid -->
-            <div class="coins-scroll-area">
-                <div class="coin-grid" id="coin-grid-container">
-                    <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px;">
-                        <div class="spinner"></div>&nbsp; در حال بارگذاری نمادهای نوبیتکس...
+        <!-- Section 2: Wallet State Manager (Feature 1) -->
+        <div id="section-wallet" class="app-tab-section" style="display: none; flex-direction: column; gap: 24px;">
+            <div class="glass-panel wallet-manager-card">
+                <div class="wallet-header">
+                    <div class="title-group">
+                        <h2><i class="fa-solid fa-wallet" style="color: var(--warning);"></i> وضعیت کیف پول و مدیریت دارایی‌ها</h2>
+                        <p>ارزها و مقادیر دارایی‌های خود را به صورت دستی ثبت کنید. هنگام زدن دکمه «ذخیره در پوشه»، این اطلاعات به طور خودکار به انتهای فایل خروجی CSV و JSON ضمیمه خواهد شد.</p>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button type="button" class="btn-quick primary" onclick="selectWalletCoinsInScanner()">
+                            <i class="fa-solid fa-arrow-pointer"></i> انتقال نمادهای ولت به اسکنر
+                        </button>
+                        <button type="button" class="btn-quick" onclick="loadSampleWallet()">
+                            <i class="fa-solid fa-flask"></i> نمونه دارایی‌ها
+                        </button>
+                        <button type="button" class="btn-quick danger" onclick="clearWallet()">
+                            <i class="fa-solid fa-trash-can"></i> پاک کردن کل ولت
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Selected Chips Tray -->
-            <div class="selected-tray-wrapper">
-                <div class="selected-tray-header">
-                    <span>پیش‌نمایش نمادهای انتخاب شده برای استعلام قیمت:</span>
+                <!-- Wallet Asset Entry Form -->
+                <div class="wallet-entry-grid">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-coins"></i> نماد ارز (Symbol):</label>
+                        <input type="text" id="wallet-coin-input" class="input-style" placeholder="مثلاً BTC یا ETHUSDT" list="available-coins-datalist">
+                        <datalist id="available-coins-datalist"></datalist>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-scale-balanced"></i> مقدار دارایی (Amount):</label>
+                        <input type="number" id="wallet-amt-input" class="input-style" placeholder="مثلاً 0.25" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-dollar-sign"></i> قیمت خرید میانگین ($):</label>
+                        <input type="number" id="wallet-buy-input" class="input-style" placeholder="مثلاً 62000" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-note-sticky"></i> یادداشت / محل نگهداری:</label>
+                        <input type="text" id="wallet-note-input" class="input-style" placeholder="مثلاً لجر، نوبیتکس، استیکینگ">
+                    </div>
+                    <div style="display: flex; align-items: flex-end;">
+                        <button type="button" class="btn-scan" style="width: 100%; height: 42px; font-size: 14px;" onclick="addWalletAsset()">
+                            <i class="fa-solid fa-plus"></i> ثبت در ولت
+                        </button>
+                    </div>
                 </div>
-                <div class="selected-tray" id="selected-chips-tray">
-                    <div style="color: var(--text-dim); font-size: 13px;">هنوز ارزی انتخاب نشده است.</div>
+
+                <!-- Wallet KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="glass-panel kpi-card">
+                        <div class="kpi-info">
+                            <h3>تعداد کل ارزهای ثبت‌شده</h3>
+                            <div class="kpi-value" id="wallet-kpi-count">۰ ارز</div>
+                        </div>
+                        <div class="kpi-icon blue"><i class="fa-solid fa-layer-group"></i></div>
+                    </div>
+                    <div class="glass-panel kpi-card">
+                        <div class="kpi-info">
+                            <h3>مجموع ارزش تخمینی پورتفوی</h3>
+                            <div class="kpi-value" style="color: var(--primary);" id="wallet-kpi-value">0.00 $</div>
+                        </div>
+                        <div class="kpi-icon green"><i class="fa-solid fa-vault"></i></div>
+                    </div>
+                    <div class="glass-panel kpi-card">
+                        <div class="kpi-info">
+                            <h3>وضعیت خروجی فایل‌ها</h3>
+                            <div class="kpi-value" style="color: var(--accent); font-size: 15px; font-weight: 600;">پیوست به انتهای CSV و JSON</div>
+                        </div>
+                        <div class="kpi-icon gold"><i class="fa-solid fa-file-export"></i></div>
+                    </div>
+                </div>
+
+                <!-- Wallet Items Table -->
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>نماد دارایی</th>
+                                <th>مقدار موجودی</th>
+                                <th>قیمت میانگین خرید</th>
+                                <th>ارزش کل تقریبی ($)</th>
+                                <th>یادداشت / محل نگهداری</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="wallet-table-body">
+                            <tr>
+                                <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                                    هنوز ارزی در کیف پول ثبت نشده است. از فرم بالا ارزهای خود را وارد کنید یا دکمه «نمونه دارایی‌ها» را بزنید.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Controls Form Panel -->
-        <div class="glass-panel controls-grid">
-            <div class="form-group">
-                <label><i class="fa-solid fa-dollar-sign"></i> کل سرمایه تخصیص یافته ($):</label>
-                <input type="number" id="input-capital" class="input-style" value="1000" step="100">
-            </div>
-
-            <div class="form-group">
-                <label><i class="fa-solid fa-percent"></i> کارمزد تیکر (%):</label>
-                <input type="number" id="input-fee" class="input-style" value="0.1" step="0.05">
-            </div>
-
-            <div class="form-group">
-                <label><i class="fa-solid fa-sliders"></i> لغزش فرضی Slippage (%):</label>
-                <input type="number" id="input-slippage" class="input-style" value="0.2" step="0.05">
-            </div>
-
-            <div class="form-group" style="grid-column: span 2;">
-                <label><i class="fa-solid fa-folder-open"></i> مسیر ذخیره‌سازی خروجی‌ها (Directory Path):</label>
-                <input type="text" id="input-output-dir" class="input-style" value="output" placeholder="مثلاً: C:\Reports یا output">
-            </div>
-
-            <div style="display: flex; gap: 10px; grid-column: span 2;">
-                <button id="btn-run-scan" class="btn-scan" style="flex: 1;" onclick="triggerScan()">
-                    <i class="fa-solid fa-rocket" id="scan-icon"></i>
-                    <span id="scan-btn-text">اجرای استعلام و اسکن زنده</span>
-                </button>
-                <button id="btn-save-dir" class="btn-scan" style="background: linear-gradient(135deg, #00E5FF 0%, #3D5AFE 100%); flex: 1;" onclick="saveToDirectory()">
-                    <i class="fa-solid fa-floppy-disk" id="save-icon"></i>
-                    <span id="save-btn-text">💾 ذخیره نمادهای انتخابی در پوشه</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Notification Banner -->
-        <div id="save-notification" class="glass-panel" style="display: none; padding: 16px 20px; background: rgba(0, 230, 118, 0.12); border: 1px solid var(--primary); color: var(--primary); font-size: 14px; border-radius: 12px; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fa-solid fa-circle-check" style="font-size: 20px;"></i>
-                <span id="save-notification-text">نتایج با موفقیت ذخیره شدند.</span>
-            </div>
-            <button onclick="document.getElementById('save-notification').style.display='none'" style="background: transparent; border: none; color: var(--primary); cursor: pointer; font-size: 18px;">&times;</button>
-        </div>
-
-        <!-- KPI Metrics Grid -->
-        <div class="kpi-grid">
-            <div class="glass-panel kpi-card">
-                <div class="kpi-info">
-                    <h3>تعداد نمادهای اسکن شده</h3>
-                    <div class="kpi-value" id="kpi-scanned">0</div>
-                </div>
-                <div class="kpi-icon blue"><i class="fa-solid fa-magnifying-glass"></i></div>
-            </div>
-
-            <div class="glass-panel kpi-card">
-                <div class="kpi-info">
-                    <h3>سیگنال‌های خرید (LONG)</h3>
-                    <div class="kpi-value" style="color: var(--primary);" id="kpi-longs">0</div>
-                </div>
-                <div class="kpi-icon green"><i class="fa-solid fa-arrow-trend-up"></i></div>
-            </div>
-
-            <div class="glass-panel kpi-card">
-                <div class="kpi-info">
-                    <h3>سیگنال‌های فروش (SHORT)</h3>
-                    <div class="kpi-value" style="color: var(--danger);" id="kpi-shorts">0</div>
-                </div>
-                <div class="kpi-icon red"><i class="fa-solid fa-arrow-trend-down"></i></div>
-            </div>
-
-            <div class="glass-panel kpi-card">
-                <div class="kpi-info">
-                    <h3>مجموع سود خالص تخمینی ($)</h3>
-                    <div class="kpi-value" style="color: var(--accent);" id="kpi-profit">0.00 $</div>
-                </div>
-                <div class="kpi-icon gold"><i class="fa-solid fa-sack-dollar"></i></div>
-            </div>
-        </div>
-
-        <!-- Signals Table Section -->
-        <div class="glass-panel content-layout">
-            <div class="table-header">
-                <div class="filter-tabs">
-                    <button class="tab-btn active" onclick="filterTable('all', this)">همه نمادها</button>
-                    <button class="tab-btn" onclick="filterTable('actionable', this)">دارای سیگنال</button>
-                    <button class="tab-btn" onclick="filterTable('long', this)">خرید LONG</button>
-                    <button class="tab-btn" onclick="filterTable('short', this)">فروش SHORT</button>
+        <!-- Section 3: AI JSON Parser (Feature 2) -->
+        <div id="section-ai" class="app-tab-section" style="display: none; flex-direction: column; gap: 24px;">
+            <div class="glass-panel ai-parser-card">
+                <div class="ai-header">
+                    <div class="title-group">
+                        <h2><i class="fa-solid fa-brain" style="color: var(--accent);"></i> پارسر و نمایشگر تحلیل هوش مصنوعی (AI JSON)</h2>
+                        <p>فایل JSON یا متن کپی‌شده از پرووایدرهای هوش مصنوعی (مثل ChatGPT، Claude، DeepSeek، Gemini و...) را وارد کنید تا به صورت جدول شکیل و سیگنال‌های کاربردی در همین صفحه نمایش یابد.</p>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button type="button" class="btn-quick primary" id="btn-add-ai-to-scanner" onclick="addAICoinsToScanner()" style="display: none;">
+                            <i class="fa-solid fa-rocket"></i> افزودن تمام نمادهای AI به اسکنر
+                        </button>
+                        <button type="button" class="btn-quick" onclick="loadSampleAIJson()">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> بارگذاری نمونه خروجی هوش مصنوعی
+                        </button>
+                        <button type="button" class="btn-quick danger" onclick="clearAIJson()">
+                            <i class="fa-solid fa-trash-can"></i> پاک کردن
+                        </button>
+                    </div>
                 </div>
 
-                <div class="search-box">
-                    <i class="fa-solid fa-search"></i>
-                    <input type="text" id="search-input" class="input-style" placeholder="جستجوی نماد (مثلاً BTC)..." onkeyup="searchSymbols()">
-                </div>
-            </div>
+                <!-- Upload & Textarea Box -->
+                <div class="ai-input-grid">
+                    <div class="file-upload-zone" onclick="document.getElementById('ai-file-input').click()">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 32px; color: var(--accent); margin-bottom: 8px;"></i>
+                        <span style="font-weight: 600; font-size: 14px;">بارگذاری فایل JSON</span>
+                        <span style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">برای انتخاب فایل کلیک کنید</span>
+                        <input type="file" id="ai-file-input" accept=".json" style="display: none;" onchange="handleAIFileUpload(event)">
+                    </div>
 
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>نماد ارز</th>
-                            <th>قیمت لحظه‌ای (USD)</th>
-                            <th>وضعیت سیگنال</th>
-                            <th>قیمت ورود</th>
-                            <th>حد ضرر (Stop)</th>
-                            <th>تارگت (Target)</th>
-                            <th>سود خالص تخمینی</th>
-                            <th>نسبت سود/ریسک (R:R)</th>
-                            <th>جزئیات تحلیل فیبوناچی</th>
-                        </tr>
-                    </thead>
-                    <tbody id="signals-table-body">
-                        <tr>
-                            <td colspan="9" style="text-align: center; color: var(--text-muted); padding: 40px;">
-                                هنوز قیمتی استعلام نشده است. نمادهای مورد نظر را از لیست بالا انتخاب کرده و دکمه «اجرای استعلام و اسکن زنده» را کلیک کنید تا داده‌ها فقط برای نمادهای انتخابی شما دریافت شوند.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <textarea id="ai-json-textarea" class="input-style ai-textarea" placeholder='متن JSON هوش مصنوعی را اینجا Paste کنید... مثلا: [{"symbol": "BTCUSDT", "signal": "BUY", "entry": 64000, "target": 68000, "stop_loss": 62000, "reason": "شکست صعودی"}]'></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; justify-content: flex-end; align-items: center;">
+                    <span id="ai-parse-status" style="font-size: 13px; color: var(--text-muted);"></span>
+                    <button type="button" class="btn-scan" style="padding: 10px 24px;" onclick="parseAIJson()">
+                        <i class="fa-solid fa-bolt"></i> تجزیه و نمایش نتایج
+                    </button>
+                </div>
+
+                <!-- Parsed Results Container -->
+                <div id="ai-results-container" style="display: none; flex-direction: column; gap: 20px; margin-top: 8px;">
+                    <!-- AI Overview Banner & KPIs -->
+                    <div class="kpi-grid">
+                        <div class="glass-panel kpi-card">
+                            <div class="kpi-info">
+                                <h3>روند کلی بازار (AI Outlook)</h3>
+                                <div class="kpi-value" style="color: var(--accent); font-size: 18px;" id="ai-kpi-trend">نامشخص</div>
+                            </div>
+                            <div class="kpi-icon blue"><i class="fa-solid fa-compass"></i></div>
+                        </div>
+
+                        <div class="glass-panel kpi-card">
+                            <div class="kpi-info">
+                                <h3>سیگنال‌های خرید (BUY/LONG)</h3>
+                                <div class="kpi-value" style="color: var(--primary);" id="ai-kpi-longs">۰</div>
+                            </div>
+                            <div class="kpi-icon green"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        </div>
+
+                        <div class="glass-panel kpi-card">
+                            <div class="kpi-info">
+                                <h3>سیگنال‌های فروش (SELL/SHORT)</h3>
+                                <div class="kpi-value" style="color: var(--danger);" id="ai-kpi-shorts">۰</div>
+                            </div>
+                            <div class="kpi-icon red"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                        </div>
+
+                        <div class="glass-panel kpi-card">
+                            <div class="kpi-info">
+                                <h3>تعداد کل نمادهای پیشنهادی</h3>
+                                <div class="kpi-value" style="color: var(--warning);" id="ai-kpi-total">۰</div>
+                            </div>
+                            <div class="kpi-icon gold"><i class="fa-solid fa-list-check"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- AI Summary Text Box if available -->
+                    <div id="ai-summary-box" class="glass-panel" style="display: none; padding: 16px 20px; border-left: 4px solid var(--accent); font-size: 13.5px; line-height: 1.8; color: var(--text-main);">
+                        <div style="font-weight: 700; color: var(--accent); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-quote-right"></i> خلاصه و جمع‌بندی هوش مصنوعی:
+                        </div>
+                        <div id="ai-summary-text"></div>
+                    </div>
+
+                    <!-- AI Signals Table -->
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>نماد پیشنهادی</th>
+                                    <th>جهت سیگنال</th>
+                                    <th>محدوده ورود (Entry)</th>
+                                    <th>حد سود (TP / Target)</th>
+                                    <th>حد ضرر (SL / Stop)</th>
+                                    <th>نسبت R:R</th>
+                                    <th>درجه اطمینان / ضریب</th>
+                                    <th>تایم‌فریم</th>
+                                    <th>استدلال و تحلیل هوش مصنوعی (Rationale)</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ai-signals-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1066,11 +1469,26 @@
         let allAvailableCoins = [];
         let selectedCoins = new Set();
         let coinQuoteFilter = 'all';
+        let userWallet = [];
+        let aiParsedData = null;
 
-        // Load available coins from backend on startup (NO SCAN CALL ON LOAD!)
+        // Startup
         window.addEventListener('DOMContentLoaded', () => {
             loadAvailableCoins();
+            loadWalletFromStorage();
         });
+
+        // Tab Switching
+        function switchAppTab(tabName, btn) {
+            document.querySelectorAll('.app-tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            
+            document.querySelectorAll('.app-tab-section').forEach(sec => sec.style.display = 'none');
+            const target = document.getElementById(`section-${tabName}`);
+            if (target) {
+                target.style.display = 'flex';
+            }
+        }
 
         async function loadAvailableCoins() {
             const grid = document.getElementById('coin-grid-container');
@@ -1082,6 +1500,9 @@
                 if (data && data.symbols) {
                     allAvailableCoins = data.symbols;
                     
+                    // Populate wallet datalist for auto-completion
+                    populateWalletDatalist();
+
                     // Pre-select default major candidates in UI (NO API calls are made here)
                     const defaults = data.default_selected || ["BTCUSDT", "ETHUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT", "TRXUSDT", "SOLUSDT", "BNBUSDT"];
                     defaults.forEach(sym => selectedCoins.add(sym));
@@ -1094,6 +1515,483 @@
             }
         }
 
+        function populateWalletDatalist() {
+            const dl = document.getElementById('available-coins-datalist');
+            if (!dl) return;
+            dl.innerHTML = allAvailableCoins.map(c => `<option value="${c.symbol}">${c.base} (${c.quote})</option>`).join('');
+        }
+
+        // ==========================================
+        // FEATURE 1: USER WALLET STATE MANAGEMENT
+        // ==========================================
+        function loadWalletFromStorage() {
+            try {
+                const stored = localStorage.getItem('nobitex_user_wallet');
+                if (stored) {
+                    userWallet = JSON.parse(stored);
+                } else {
+                    userWallet = [];
+                }
+            } catch (e) {
+                userWallet = [];
+            }
+            renderWalletTable();
+        }
+
+        function saveWalletToStorage() {
+            try {
+                localStorage.setItem('nobitex_user_wallet', JSON.stringify(userWallet));
+            } catch (e) {}
+            updateWalletBadge();
+        }
+
+        function updateWalletBadge() {
+            const badge = document.getElementById('badge-wallet-count');
+            const kpiCount = document.getElementById('wallet-kpi-count');
+            const kpiVal = document.getElementById('wallet-kpi-value');
+            const scannerSummary = document.getElementById('scanner-wallet-summary-text');
+            const count = userWallet.length;
+            
+            if (badge) badge.innerText = `${count}`;
+            if (kpiCount) kpiCount.innerText = `${count} ارز`;
+            if (scannerSummary) {
+                scannerSummary.innerText = count > 0 ? `${count} ارز ثبت‌شده` : '۰ ارز ثبت‌شده';
+            }
+
+            let totalVal = 0;
+            userWallet.forEach(item => {
+                totalVal += parseFloat(item.value) || 0;
+            });
+            if (kpiVal) kpiVal.innerText = `${totalVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} $`;
+        }
+
+        function renderWalletTable() {
+            const tbody = document.getElementById('wallet-table-body');
+            if (!tbody) return;
+
+            if (userWallet.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                            هنوز ارزی در کیف پول ثبت نشده است. از فرم بالا ارزهای خود را وارد کنید یا دکمه «نمونه دارایی‌ها» را بزنید.
+                        </td>
+                    </tr>
+                `;
+                updateWalletBadge();
+                return;
+            }
+
+            tbody.innerHTML = userWallet.map((item, idx) => {
+                const val = parseFloat(item.value) || 0;
+                return `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td style="font-weight: 700; color: #fff;">
+                            <span style="color: var(--warning);"><i class="fa-solid fa-coins"></i></span> ${item.symbol}
+                        </td>
+                        <td style="font-weight: 600;">${item.amount}</td>
+                        <td>${item.buy_price ? `${Number(item.buy_price).toLocaleString()} $` : '-'}</td>
+                        <td style="font-weight: 700; color: var(--primary);">${val > 0 ? `${val.toLocaleString()} $` : '-'}</td>
+                        <td style="color: var(--text-muted); font-size: 13px;">${item.notes || '-'}</td>
+                        <td>
+                            <button type="button" class="btn-quick danger" style="padding: 4px 10px;" onclick="removeWalletAsset(${idx})" title="حذف ارز">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            updateWalletBadge();
+        }
+
+        function addWalletAsset() {
+            const symInput = document.getElementById('wallet-coin-input');
+            const amtInput = document.getElementById('wallet-amt-input');
+            const buyInput = document.getElementById('wallet-buy-input');
+            const noteInput = document.getElementById('wallet-note-input');
+
+            let symbol = (symInput.value || '').trim().toUpperCase();
+            let amount = parseFloat(amtInput.value);
+            let buyPrice = parseFloat(buyInput.value) || 0;
+            let notes = (noteInput.value || '').trim();
+
+            if (!symbol) {
+                alert('لطفاً نماد ارز را وارد کنید (مثلاً BTC یا ETHUSDT).');
+                symInput.focus();
+                return;
+            }
+            if (isNaN(amount) || amount <= 0) {
+                alert('لطفاً مقدار معتبر وارد کنید.');
+                amtInput.focus();
+                return;
+            }
+
+            // Auto-append USDT if user just typed e.g. BTC
+            if (!symbol.endsWith('USDT') && !symbol.endsWith('IRT')) {
+                symbol = symbol + 'USDT';
+            }
+
+            const value = amount * buyPrice;
+
+            userWallet.push({
+                symbol,
+                amount,
+                buy_price: buyPrice > 0 ? buyPrice : null,
+                value: value > 0 ? Math.round(value * 100) / 100 : null,
+                notes
+            });
+
+            symInput.value = '';
+            amtInput.value = '';
+            buyInput.value = '';
+            noteInput.value = '';
+
+            saveWalletToStorage();
+            renderWalletTable();
+        }
+
+        function removeWalletAsset(idx) {
+            userWallet.splice(idx, 1);
+            saveWalletToStorage();
+            renderWalletTable();
+        }
+
+        function clearWallet() {
+            if (userWallet.length === 0) return;
+            if (confirm('آیا از پاک کردن تمام دارایی‌های کیف پول اطمینان دارید؟')) {
+                userWallet = [];
+                saveWalletToStorage();
+                renderWalletTable();
+            }
+        }
+
+        function loadSampleWallet() {
+            userWallet = [
+                { symbol: "BTCUSDT", amount: 0.15, buy_price: 62500, value: 9375.00, notes: "کیف پول لجر - هولد میان‌مدت" },
+                { symbol: "ETHUSDT", amount: 2.5, buy_price: 3200, value: 8000.00, notes: "استیکینگ و هولد" },
+                { symbol: "SOLUSDT", amount: 30, buy_price: 135, value: 4050.00, notes: "معاملات اسپات" },
+                { symbol: "DOGEUSDT", amount: 15000, buy_price: 0.22, value: 3300.00, notes: "پله ورود نوسان‌گیری" }
+            ];
+            saveWalletToStorage();
+            renderWalletTable();
+        }
+
+        function selectWalletCoinsInScanner() {
+            if (userWallet.length === 0) {
+                alert('کیف پول خالی است. ابتدا ارزهایی را در ولت ثبت کنید.');
+                return;
+            }
+            userWallet.forEach(item => {
+                selectedCoins.add(item.symbol);
+            });
+            renderCoinsList();
+            updateSelectedSummary();
+            switchAppTab('scanner', document.getElementById('tab-btn-scanner'));
+            document.getElementById('coin-selector-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function getWalletData() {
+            return userWallet;
+        }
+
+        // ==========================================
+        // FEATURE 2: AI JSON PARSER & VISUALIZER
+        // ==========================================
+        function handleAIFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                document.getElementById('ai-json-textarea').value = text;
+                parseAIJson();
+            };
+            reader.readAsText(file, 'utf-8');
+        }
+
+        function parseAIJson() {
+            const textarea = document.getElementById('ai-json-textarea');
+            const status = document.getElementById('ai-parse-status');
+            const rawText = (textarea.value || '').trim();
+
+            if (!rawText) {
+                alert('لطفاً ابتدا فایل JSON را بارگذاری کنید یا متن آن را در کادر پیست نمایید.');
+                textarea.focus();
+                return;
+            }
+
+            try {
+                // Strip markdown code block if user pasted ```json ... ```
+                let cleanText = rawText;
+                if (cleanText.startsWith('```')) {
+                    cleanText = cleanText.replace(/^```[a-zA-Z]*\n?/, '').replace(/```$/, '').trim();
+                }
+
+                const parsed = JSON.parse(cleanText);
+                const normalized = smartNormalizeAIJson(parsed);
+                aiParsedData = normalized;
+
+                renderAIParsedResults(normalized);
+                status.innerHTML = `<span style="color: var(--primary);"><i class="fa-solid fa-circle-check"></i> ${normalized.signals.length} نماد با موفقیت استخراج و تجزیه شد.</span>`;
+            } catch (err) {
+                status.innerHTML = `<span style="color: var(--danger);"><i class="fa-solid fa-triangle-exclamation"></i> خطا در خواندن JSON: ${err.message}</span>`;
+                alert('خطا در قالب‌بندی JSON: لطفاً مطمئن شوید متن ورودی یک ساختار معتبر JSON است.\n' + err.message);
+            }
+        }
+
+        function smartNormalizeAIJson(raw) {
+            let result = {
+                market_trend: '',
+                summary: '',
+                timestamp: '',
+                signals: []
+            };
+
+            if (typeof raw === 'object' && raw !== null) {
+                result.market_trend = raw.market_trend || raw.trend || raw.market_outlook || raw.sentiment || raw.outlook || '';
+                result.summary = raw.summary || raw.overview || raw.notes || raw.message || raw.analysis_summary || '';
+                result.timestamp = raw.timestamp || raw.date || raw.time || '';
+            }
+
+            let items = [];
+            if (Array.isArray(raw)) {
+                items = raw;
+            } else if (typeof raw === 'object' && raw !== null) {
+                for (const key of ['signals', 'recommendations', 'trades', 'data', 'coins', 'results', 'predictions', 'items', 'list', 'analysis']) {
+                    if (Array.isArray(raw[key])) {
+                        items = raw[key];
+                        break;
+                    }
+                }
+                if (items.length === 0) {
+                    const entries = Object.entries(raw);
+                    const symbolLike = entries.filter(([k, v]) => typeof v === 'object' && v !== null && (k.includes('USDT') || k.includes('IRT') || k.length <= 10));
+                    if (symbolLike.length > 0) {
+                        items = symbolLike.map(([k, v]) => ({ symbol: k, ...v }));
+                    } else if (raw.symbol || raw.coin || raw.pair) {
+                        items = [raw];
+                    }
+                }
+            }
+
+            result.signals = items.map(item => {
+                if (typeof item !== 'object' || item === null) return null;
+
+                let sym = item.symbol || item.coin || item.pair || item.ticker || item.name || '';
+                sym = String(sym).trim().toUpperCase();
+                if (sym && !sym.endsWith('USDT') && !sym.endsWith('IRT') && !sym.includes('/')) {
+                    sym = sym + 'USDT';
+                }
+
+                let action = item.signal || item.action || item.recommendation || item.side || item.type || item.direction || 'NEUTRAL';
+                action = String(action).toUpperCase();
+                let normalizedAction = 'HOLD';
+                if (action.includes('BUY') || action.includes('LONG') || action.includes('BULL')) normalizedAction = 'LONG';
+                else if (action.includes('SELL') || action.includes('SHORT') || action.includes('BEAR')) normalizedAction = 'SHORT';
+
+                let entry = item.entry || item.entry_price || item.entryPrice || item.price || item.buy_price || '-';
+                let target = item.target || item.tp || item.take_profit || item.target_price || item.targetPrice || '-';
+                let stop = item.stop_loss || item.sl || item.stop || item.stopLoss || item.stop_price || '-';
+                let rr = item.rr || item.rr_ratio || item.risk_reward || item.riskReward || '-';
+                let confidence = item.confidence || item.score || item.probability || item.accuracy || item.win_rate || '-';
+                let reason = item.reason || item.rationale || item.analysis || item.description || item.explanation || item.notes || '-';
+                let timeframe = item.timeframe || item.tf || item.interval || item.resolution || '';
+
+                return {
+                    symbol: sym,
+                    action: normalizedAction,
+                    raw_action: action,
+                    entry,
+                    target,
+                    stop,
+                    rr,
+                    confidence,
+                    reason,
+                    timeframe
+                };
+            }).filter(Boolean);
+
+            return result;
+        }
+
+        function renderAIParsedResults(data) {
+            const container = document.getElementById('ai-results-container');
+            const tableBody = document.getElementById('ai-signals-table-body');
+            const trendEl = document.getElementById('ai-kpi-trend');
+            const longsEl = document.getElementById('ai-kpi-longs');
+            const shortsEl = document.getElementById('ai-kpi-shorts');
+            const totalEl = document.getElementById('ai-kpi-total');
+            const summaryBox = document.getElementById('ai-summary-box');
+            const summaryText = document.getElementById('ai-summary-text');
+            const btnAddAll = document.getElementById('btn-add-ai-to-scanner');
+            const badgeAi = document.getElementById('badge-ai-count');
+
+            container.style.display = 'flex';
+
+            const signals = data.signals;
+            const longCount = signals.filter(s => s.action === 'LONG').length;
+            const shortCount = signals.filter(s => s.action === 'SHORT').length;
+
+            trendEl.innerText = data.market_trend || (longCount > shortCount ? 'صعودی (Bullish)' : (shortCount > longCount ? 'نزولی (Bearish)' : 'خنثی (Neutral)'));
+            longsEl.innerText = longCount;
+            shortsEl.innerText = shortCount;
+            totalEl.innerText = signals.length;
+
+            if (badgeAi) {
+                badgeAi.innerText = signals.length;
+                badgeAi.style.display = 'inline-block';
+            }
+
+            if (data.summary) {
+                summaryBox.style.display = 'block';
+                summaryText.innerText = data.summary;
+            } else {
+                summaryBox.style.display = 'none';
+            }
+
+            if (signals.length > 0 && btnAddAll) {
+                btnAddAll.style.display = 'inline-flex';
+            }
+
+            if (signals.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="10" style="text-align: center; color: var(--text-muted); padding: 30px;">
+                            هیچ سیگنال یا نمادی در ساختار JSON یافت نشد.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = signals.map(s => {
+                let badgeClass = 'none';
+                let badgeText = s.action;
+                if (s.action === 'LONG') { badgeClass = 'long'; badgeText = 'خرید (LONG)'; }
+                else if (s.action === 'SHORT') { badgeClass = 'short'; badgeText = 'فروش (SHORT)'; }
+                else { badgeText = 'خنثی (HOLD)'; }
+
+                return `
+                    <tr>
+                        <td style="font-weight: 700; color: #fff;">
+                            <span style="color: var(--accent);"><i class="fa-solid fa-microchip"></i></span> ${s.symbol}
+                        </td>
+                        <td><span class="badge-side ${badgeClass}">${badgeText}</span></td>
+                        <td style="font-weight: 600;">${s.entry}</td>
+                        <td style="color: var(--primary); font-weight: 700;">${s.target}</td>
+                        <td style="color: var(--danger); font-weight: 700;">${s.stop}</td>
+                        <td style="color: var(--accent); font-weight: 600;">${s.rr}</td>
+                        <td><span style="background: rgba(255,255,255,0.08); padding: 2px 8px; border-radius: 6px; font-size: 12px;">${s.confidence}</span></td>
+                        <td style="color: var(--text-muted); font-size: 12px;">${s.timeframe || '-'}</td>
+                        <td style="max-width: 280px; white-space: normal; line-height: 1.6; font-size: 12.5px; color: var(--text-muted);">${s.reason}</td>
+                        <td>
+                            <button type="button" class="btn-quick primary" style="padding: 5px 10px; font-size: 11.5px;" onclick="selectSingleAICoinInScanner('${s.symbol}')" title="انتخاب و اسکن این نماد">
+                                <i class="fa-solid fa-arrow-pointer"></i> اسکن
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function addAICoinsToScanner() {
+            if (!aiParsedData || !aiParsedData.signals || aiParsedData.signals.length === 0) {
+                alert('هیچ نمادی از هوش مصنوعی برای افزودن وجود ندارد.');
+                return;
+            }
+
+            aiParsedData.signals.forEach(s => {
+                if (s.symbol) selectedCoins.add(s.symbol);
+            });
+
+            renderCoinsList();
+            updateSelectedSummary();
+            switchAppTab('scanner', document.getElementById('tab-btn-scanner'));
+            document.getElementById('coin-selector-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectSingleAICoinInScanner(symbol) {
+            if (!symbol) return;
+            selectedCoins.add(symbol);
+            renderCoinsList();
+            updateSelectedSummary();
+            switchAppTab('scanner', document.getElementById('tab-btn-scanner'));
+            document.getElementById('coin-selector-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function loadSampleAIJson() {
+            const sample = {
+                "market_trend": "صعودی قوی (Bullish Momentum)",
+                "summary": "طبق تحلیل الگوریتم هوش مصنوعی، بیت‌کوین و آلت‌کوین‌های مطرح به سطوح حمایتی فیبوناچی 0.618 واکنش مثبت نشان داده‌اند و نشانه‌های ادامه روند صعودی با حجم بالا دارند.",
+                "timestamp": "2026-09-24 15:30",
+                "signals": [
+                    {
+                        "symbol": "BTCUSDT",
+                        "signal": "BUY",
+                        "entry": 63850,
+                        "target": 68200,
+                        "stop_loss": 62100,
+                        "rr": 2.48,
+                        "confidence": "92%",
+                        "timeframe": "4h",
+                        "reason": "پولبک به حمایت کلیدی، واگرایی مخفی مثبت در RSI و تثبیت بالای میانگین متحرک 50"
+                    },
+                    {
+                        "symbol": "ETHUSDT",
+                        "signal": "BUY",
+                        "entry": 3380,
+                        "target": 3720,
+                        "stop_loss": 3260,
+                        "rr": 2.83,
+                        "confidence": "88%",
+                        "timeframe": "1h",
+                        "reason": "شکست الگوی کنج نزولی به سمت بالا و افزایش فشار خرید خریداران نهادی"
+                    },
+                    {
+                        "symbol": "SOLUSDT",
+                        "signal": "BUY",
+                        "entry": 146.5,
+                        "target": 168.0,
+                        "stop_loss": 138.0,
+                        "rr": 2.53,
+                        "confidence": "85%",
+                        "timeframe": "4h",
+                        "reason": "کف دوگانه روی باند پایینی بولینگر و تقاطع صعودی خط MACD با سیگنال"
+                    },
+                    {
+                        "symbol": "DOGEUSDT",
+                        "signal": "BUY",
+                        "entry": 0.245,
+                        "target": 0.295,
+                        "stop_loss": 0.228,
+                        "rr": 2.94,
+                        "confidence": "80%",
+                        "timeframe": "1h",
+                        "reason": "رشد حجم معاملات 24 ساعته همراه با خروج از فاز رنج"
+                    }
+                ]
+            };
+
+            document.getElementById('ai-json-textarea').value = JSON.stringify(sample, null, 2);
+            parseAIJson();
+        }
+
+        function clearAIJson() {
+            document.getElementById('ai-json-textarea').value = '';
+            document.getElementById('ai-parse-status').innerHTML = '';
+            document.getElementById('ai-results-container').style.display = 'none';
+            const btnAddAll = document.getElementById('btn-add-ai-to-scanner');
+            if (btnAddAll) btnAddAll.style.display = 'none';
+            const badgeAi = document.getElementById('badge-ai-count');
+            if (badgeAi) badgeAi.style.display = 'none';
+            aiParsedData = null;
+        }
+
+        // ==========================================
+        // SCANNER & TABLE LOGIC
+        // ==========================================
         function getFilteredCoins() {
             const searchVal = (document.getElementById('coin-search-input') ? document.getElementById('coin-search-input').value.trim().toLowerCase() : '');
             return allAvailableCoins.filter(c => {
@@ -1286,7 +2184,8 @@
                         taker_fee: fee, 
                         slippage, 
                         token, 
-                        output_dir: outputDir 
+                        output_dir: outputDir,
+                        wallet: getWalletData()
                     })
                 });
 
@@ -1353,7 +2252,8 @@
                         taker_fee: fee, 
                         slippage, 
                         token, 
-                        output_dir: outputDir 
+                        output_dir: outputDir,
+                        wallet: getWalletData()
                     })
                 });
 
